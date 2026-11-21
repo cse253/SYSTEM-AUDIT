@@ -138,7 +138,7 @@ The official benchmark scenario was executed end-to-end via automated simulation
 | **Step 5** | Distributor B (Karnataka) Order for 120 packets | Stock: **88**, Requested: **120**, Shortage: **32** | Shortage: 32 packets | **100% MATCH** |
 | **Step 5** | Stock Shortage Enforcement | **Dispatch BLOCKED** | Dispatch Blocked | **100% MATCH** |
 | **Step 6** | Retailer A Payment: Record ₹4,000 against ₹7,875 | Outstanding: **₹3,875.00** | Outstanding: ₹3,875.00 | **100% MATCH** |
-| **Step 7 & 8** | Costing: RM (₹1,725 + ₹1,365 + ₹60) + Pkg (₹291 + ₹162) + Overheads (₹1,500 + ₹752) | Total: **₹5,855.00**, Cost/Pkt: **₹31.14** | Cost: ₹31.14, Selling: ₹50, Margin: 37.72% | **100% MATCH** |
+| **Step 7 & 8** | Costing: RM (Flour ₹1,725 + Oil ₹1,470 + Spices ₹240 = ₹3,435) + Pkg (Pouches ₹485 + Cartons ₹135 = ₹620) + Overheads (Labour ₹1,200 + Power ₹600 = ₹1,800) | Total: **₹5,855.00**, Cost/Pkt: **₹31.14** | Cost: ₹31.14, Selling: ₹50, Margin: 37.72% | **100% MATCH** |
 
 ---
 

@@ -210,11 +210,11 @@ function generateDesignNotePDF() {
       { header: 'Total Cost (INR)', dataKey: 'total' },
     ],
     body: [
-      { comp: 'Direct Raw Materials', basis: 'Flour (40kg) + Oil (10.5L) + Spices (1.2kg)', rate: 'Flour ₹43.125, Oil ₹130, Spices ₹50', total: '₹ 3,150.00' },
-      { comp: 'Direct Packaging Materials', basis: '188 good + 6 damaged pouches (194) + 9 cartons', rate: 'Pouches ₹1.50, Cartons ₹18.00', total: '₹ 453.00' },
-      { comp: 'Direct Factory Labour', basis: 'Batch fryers, kneaders and packaging operators', rate: 'Standard batch allocation', total: '₹ 1,500.00' },
-      { comp: 'Gas & Power Utility Overhead', basis: 'LPG cylinder fuel + commercial frying power', rate: 'Direct batch meter allocation', total: '₹ 752.00' },
-      { comp: 'TOTAL BATCH PRODUCTION COST', basis: 'Sum of RM + Packaging + Labour + Power', rate: '188 good packets produced', total: '₹ 5,855.00' },
+      { comp: 'Direct Raw Materials', basis: 'Flour (40kg) + Oil (10.5L) + Spices (1.2kg)', rate: 'Flour ₹43.125, Oil ₹140.00, Spices ₹200.00', total: '₹ 3,435.00' },
+      { comp: 'Direct Packaging Materials', basis: '194 Pouches (188 good + 6 scrap) + 9 cartons', rate: 'Pouches ₹2.50, Cartons ₹15.00', total: '₹ 620.00' },
+      { comp: 'Direct Factory Labour', basis: 'Batch fryers, kneaders and packaging operators', rate: 'Direct batch labour allocation', total: '₹ 1,200.00' },
+      { comp: 'Gas & Power Utility Overhead', basis: 'LPG cylinder fuel + commercial frying power', rate: 'Direct batch utility allocation', total: '₹ 600.00' },
+      { comp: 'TOTAL BATCH PRODUCTION COST', basis: 'Sum of RM (₹3,435) + Pkg (₹620) + Direct Overheads (₹1,800)', rate: '188 good packets produced', total: '₹ 5,855.00' },
       { comp: 'COST PER PACKET & MARGIN', basis: 'Cost: ₹5,855 / 188 pkts = ₹31.14 | Selling: ₹50.00', rate: 'Profit: ₹18.86 / pkt', total: '37.72% Margin' },
     ],
   });

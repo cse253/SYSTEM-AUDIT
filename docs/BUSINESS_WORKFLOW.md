@@ -144,11 +144,11 @@ flowchart TD
   - Decrements Packaging Materials: Pouches $-194$ pcs, Cartons $-9$ pcs (`StockLedger: PRODUCTION_ISSUE`).
   - Increments Finished Goods: Murukku $+188$ packets (`StockLedger: PRODUCTION_YIELD`).
   - Accumulates total cost:
-    - Raw Materials: ₹3,150.00
-    - Packaging: ₹453.00
-    - Direct Labour: ₹1,500.00
-    - Gas & Power: ₹752.00
-    - Total Batch Cost: ₹5,855.00
+    - Raw Materials: Flour 40kg @ ₹43.125 (₹1,725) + Oil 10.5L @ ₹140 (₹1,470) + Spices 1.2kg @ ₹200 (₹240) = ₹3,435.00
+    - Packaging Materials: 194 Pouches @ ₹2.50 (₹485) + 9 Cartons @ ₹15 (₹135) = ₹620.00
+    - Direct Factory Labour: ₹1,200.00
+    - Gas & Power Utility: ₹600.00
+    - Total Batch Cost: ₹3,435.00 + ₹620.00 + ₹1,200.00 + ₹600.00 = ₹5,855.00
     - Cost per Good Packet: $\frac{₹5,855.00}{188} = ₹31.14$.
     - Profit per Packet: $₹50.00 - ₹31.14 = ₹18.86$ (Gross Margin: 37.72%).
 

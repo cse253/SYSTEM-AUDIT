@@ -64,7 +64,7 @@
     <!-- Step P8 -->
     <rect x="25" y="580" width="400" height="85" rx="6" fill="#ecfdf5" stroke="#6ee7b7"/>
     <text x="40" y="603" fill="#047857" font-size="12" font-weight="700">8. Batch Costing &amp; Cost Per Packet</text>
-    <text x="40" y="621" fill="#475569" font-size="11">RM: ₹3,150 + Pkg: ₹453 + Labour: ₹1,500 + Gas: ₹752 = ₹5,855</text>
+    <text x="40" y="621" fill="#475569" font-size="11">RM: ₹3,435 + Pkg: ₹620 + Labour: ₹1,200 + Gas: ₹600 = ₹5,855</text>
     <text x="40" y="639" fill="#047857" font-size="12" font-weight="700">Cost/Packet: ₹31.14 | Selling: ₹50.00 | Profit: ₹18.86 (37.7%)</text>
     <text x="40" y="655" fill="#475569" font-size="10">INCREMENT FINISHED GOODS STOCK: +188 Packets</text>
   </g>

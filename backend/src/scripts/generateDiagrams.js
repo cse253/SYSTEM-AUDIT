@@ -181,9 +181,9 @@ function generateERDiagramSVG() {
     <text x="25" y="194" fill="#64748b" font-size="10">{ planned, actual, variance, cost }</text>
     <text x="15" y="212" fill="#059669" font-size="11">packagingMaterials[]: Scrap</text>
     <text x="25" y="228" fill="#64748b" font-size="10">{ actual: 188, damaged: 6, total: 194 }</text>
-    <text x="15" y="246" fill="#475569" font-size="11">totalRawMaterialCost : ₹3,150.00</text>
-    <text x="15" y="264" fill="#475569" font-size="11">totalPackagingCost : ₹453.00</text>
-    <text x="15" y="282" fill="#475569" font-size="11">labourCost : ₹1,500, power: ₹752</text>
+    <text x="15" y="246" fill="#475569" font-size="11">totalRawMaterialCost : ₹3,435.00</text>
+    <text x="15" y="264" fill="#475569" font-size="11">totalPackagingCost : ₹620.00</text>
+    <text x="15" y="282" fill="#475569" font-size="11">labourCost : ₹1,200, power: ₹600</text>
     <text x="15" y="300" fill="#16a34a" font-size="11" font-weight="600">totalProductionCost : ₹5,855.00</text>
     <text x="15" y="318" fill="#16a34a" font-size="11" font-weight="600">costPerPacket : ₹31.14</text>
     <text x="15" y="336" fill="#475569" font-size="11">profitPerPacket : ₹18.86 (37.7%)</text>
@@ -288,7 +288,7 @@ function generateERDiagramSVG() {
     <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
     <text x="15" y="70" fill="#475569" font-size="11">expenseNumber : EXP-2026-0001</text>
     <text x="15" y="88" fill="#475569" font-size="11">category : LABOUR | GAS_POWER</text>
-    <text x="15" y="106" fill="#16a34a" font-size="11" font-weight="600">amount : Number (₹1,500, ₹752)</text>
+    <text x="15" y="106" fill="#16a34a" font-size="11" font-weight="600">amount : Number (₹1,200, ₹600)</text>
     <text x="15" y="124" fill="#2563eb" font-size="11">productionRun: ObjectId [FK -> Run]</text>
     <text x="15" y="142" fill="#2563eb" font-size="11">recordedBy : ObjectId [FK -> User]</text>
     <text x="15" y="160" fill="#475569" font-size="11">expenseDate : Date</text>
@@ -576,7 +576,7 @@ function generateWorkflowSVG() {
     <!-- Step P8 -->
     <rect x="25" y="580" width="400" height="85" rx="6" fill="#ecfdf5" stroke="#6ee7b7"/>
     <text x="40" y="603" fill="#047857" font-size="12" font-weight="700">8. Batch Costing &amp; Cost Per Packet</text>
-    <text x="40" y="621" fill="#475569" font-size="11">RM: ₹3,150 + Pkg: ₹453 + Labour: ₹1,500 + Gas: ₹752 = ₹5,855</text>
+    <text x="40" y="621" fill="#475569" font-size="11">RM: ₹3,435 + Pkg: ₹620 + Labour: ₹1,200 + Gas: ₹600 = ₹5,855</text>
     <text x="40" y="639" fill="#047857" font-size="12" font-weight="700">Cost/Packet: ₹31.14 | Selling: ₹50.00 | Profit: ₹18.86 (37.7%)</text>
     <text x="40" y="655" fill="#475569" font-size="10">INCREMENT FINISHED GOODS STOCK: +188 Packets</text>
   </g>

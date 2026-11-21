@@ -67,11 +67,11 @@ $$\text{Consumption Variance \%} = \left( \frac{\text{Actual Consumption} - \tex
   $$\text{New WAC} = \frac{(\text{Existing Stock} \times \text{Existing Rate}) + (\text{Purchase Qty} \times \text{Purchase Rate})}{\text{Existing Stock} + \text{Purchase Qty}}$$
   *Flour Benchmark*: Existing 100 kg @ ₹42.00 (₹4,200) + New 60 kg @ ₹45.00 (₹2,700) $\rightarrow$ 160 kg @ **₹43.125 / kg**.
 - **Batch Cost Breakdown (Murukku 200 g Benchmark)**:
-  1. Direct Raw Materials: Rice Flour (40 kg @ ₹43.125 = ₹1,725.00) + Cooking Oil (10.5 L @ ₹130.00 = ₹1,365.00) + Salt & Spices (1.2 kg @ ₹50.00 = ₹60.00) = **₹3,150.00**
-  2. Packaging Materials: 194 Pouches @ ₹1.50 (₹291.00) + 9 Cartons @ ₹18.00 (₹162.00) = **₹453.00**
-  3. Direct Overheads: Labour (₹1,500.00) + Gas & Power (₹752.00) = **₹2,252.00**
-  - **Total Production Cost**: $₹3,150.00 + ₹453.00 + ₹2,252.00 = \mathbf{₹5,855.00}$
-  - **Cost Per Packet**: $\frac{₹5,855.00}{188\text{ good packets}} = \mathbf{₹31.14}$
+  1. Direct Raw Materials: Rice Flour (40 kg × ₹43.125 = ₹1,725.00) + Cooking Oil (10.5 L × ₹140.00 = ₹1,470.00) + Salt & Spices (1.2 kg × ₹200.00 = ₹240.00) = **₹3,435.00**
+  2. Packaging Materials: 194 Pouches (188 good + 6 damaged) × ₹2.50 (₹485.00) + 9 Cartons × ₹15.00 (₹135.00) = **₹620.00**
+  3. Direct Overheads: Labour (₹1,200.00) + Gas & Power (₹600.00) = **₹1,800.00**
+  - **Total Production Cost**: $₹3,435.00 + ₹620.00 + ₹1,800.00 = \mathbf{₹5,855.00}$
+  - **Cost Per Good Packet**: $\frac{₹5,855.00}{188\text{ good packets}} = \mathbf{₹31.14}$
   - **Gross Profit**: Selling Price ₹50.00 − Cost ₹31.14 = **₹18.86 per packet** (**37.72% Gross Margin**).
 
 ---
