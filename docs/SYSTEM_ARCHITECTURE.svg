@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" width="100%" height="100%" style="background:#f8fafc; font-family:'Segoe UI', Inter, -apple-system, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- TITLE -->
+  <rect x="40" y="25" width="1420" height="65" rx="8" fill="#1e293b"/>
+  <text x="65" y="55" fill="#ffffff" font-size="20" font-weight="700">NIT TIRUCHIRAPPALLI — FULL-STACK SYSTEM ARCHITECTURE</text>
+  <text x="65" y="76" fill="#94a3b8" font-size="12">4-Tier Decoupled Enterprise Architecture: Presentation SPA, Express API Gateway, Domain Services &amp; MongoDB Persistence</text>
+
+  <!-- TIER 1: USER ROLES -->
+  <g transform="translate(40, 110)" filter="url(#shadow)">
+    <rect width="1420" height="120" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="1420" height="30" rx="8" fill="#e2e8f0"/>
+    <text x="20" y="20" fill="#334155" font-size="12" font-weight="700">TIER 1: USER OPERATIONAL ROLES (5 DISTINCT PERSONAS)</text>
+    
+    <!-- Salesman -->
+    <rect x="20" y="45" width="260" height="60" rx="6" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="35" y="68" fill="#1d4ed8" font-size="12" font-weight="700">1. SALESMAN</text>
+    <text x="35" y="88" fill="#475569" font-size="11">Catalog view, order entry, status tracking</text>
+
+    <!-- Admin -->
+    <rect x="305" y="45" width="260" height="60" rx="6" fill="#fef3c7" stroke="#fde68a"/>
+    <text x="320" y="68" fill="#b45309" font-size="12" font-weight="700">2. ADMIN</text>
+    <text x="320" y="88" fill="#475569" font-size="11">Order approval, dispatch, GST invoicing</text>
+
+    <!-- Production Supervisor -->
+    <rect x="590" y="45" width="260" height="60" rx="6" fill="#f3e8ff" stroke="#e9d5ff"/>
+    <text x="605" y="68" fill="#7e22ce" font-size="12" font-weight="700">3. PRODUCTION SUPERVISOR</text>
+    <text x="605" y="88" fill="#475569" font-size="11">BOM, batch runs, consumption, scrap</text>
+
+    <!-- Accountant / Auditor -->
+    <rect x="875" y="45" width="260" height="60" rx="6" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="890" y="68" fill="#047857" font-size="12" font-weight="700">4. ACCOUNTANT / AUDITOR</text>
+    <text x="890" y="88" fill="#475569" font-size="11">Read-only, 15 registers, Excel/PDF exports</text>
+
+    <!-- Owner -->
+    <rect x="1160" y="45" width="240" height="60" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="1175" y="68" fill="#0f172a" font-size="12" font-weight="700">5. OWNER</text>
+    <text x="1175" y="88" fill="#475569" font-size="11">Executive KPI dashboard, audit oversight</text>
+  </g>
+
+  <!-- CONNECTOR 1 -> 2 -->
+  <line x1="750" y1="230" x2="750" y2="260" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="760" y="248" fill="#64748b" font-size="10">HTTPS / Responsive UI</text>
+
+  <!-- TIER 2: PRESENTATION LAYER (FRONTEND) -->
+  <g transform="translate(40, 260)" filter="url(#shadow)">
+    <rect width="1420" height="150" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="1420" height="30" rx="8" fill="#dbeafe"/>
+    <text x="20" y="20" fill="#1e40af" font-size="12" font-weight="700">TIER 2: PRESENTATION LAYER (REACT 18 + VITE SINGLE PAGE APPLICATION)</text>
+
+    <!-- Components -->
+    <rect x="20" y="45" width="220" height="90" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="35" y="68" fill="#0f172a" font-size="12" font-weight="700">Routing &amp; Guards</text>
+    <text x="35" y="86" fill="#475569" font-size="11">• React Router v6</text>
+    <text x="35" y="104" fill="#475569" font-size="11">• ProtectedRoute (5 roles)</text>
+    <text x="35" y="122" fill="#475569" font-size="11">• Direct URL redirect</text>
+
+    <rect x="260" y="45" width="220" height="90" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="275" y="68" fill="#0f172a" font-size="12" font-weight="700">State &amp; Context</text>
+    <text x="275" y="86" fill="#475569" font-size="11">• AuthContext (JWT)</text>
+    <text x="275" y="104" fill="#475569" font-size="11">• localStorage token</text>
+    <text x="275" y="122" fill="#475569" font-size="11">• Session timeout check</text>
+
+    <rect x="500" y="45" width="230" height="90" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="515" y="68" fill="#0f172a" font-size="12" font-weight="700">Operational Views</text>
+    <text x="515" y="86" fill="#475569" font-size="11">• Dashboard, Catalog, Orders</text>
+    <text x="515" y="104" fill="#475569" font-size="11">• Invoices, Payments, BOM</text>
+    <text x="515" y="122" fill="#475569" font-size="11">• Production &amp; Stock Ledger</text>
+
+    <rect x="750" y="45" width="210" height="90" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="765" y="68" fill="#0f172a" font-size="12" font-weight="700">Visual Analytics</text>
+    <text x="765" y="86" fill="#475569" font-size="11">• Recharts Visuals</text>
+    <text x="765" y="104" fill="#475569" font-size="11">• Yield &amp; Scrap BarCharts</text>
+    <text x="765" y="122" fill="#475569" font-size="11">• Stock Health &amp; Trends</text>
+
+    <rect x="980" y="45" width="210" height="90" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="995" y="68" fill="#0f172a" font-size="12" font-weight="700">Document Exporters</text>
+    <text x="995" y="86" fill="#475569" font-size="11">• jsPDF (Tax Invoices)</text>
+    <text x="995" y="104" fill="#475569" font-size="11">• SheetJS (xlsx registers)</text>
+    <text x="995" y="122" fill="#475569" font-size="11">• CSV formatted exports</text>
+
+    <rect x="1210" y="45" width="190" height="90" rx="6" fill="#eff6ff" stroke="#3b82f6"/>
+    <text x="1225" y="68" fill="#1d4ed8" font-size="12" font-weight="700">HTTP Client</text>
+    <text x="1225" y="86" fill="#475569" font-size="11">• Axios client</text>
+    <text x="1225" y="104" fill="#475569" font-size="11">• Bearer JWT Header</text>
+    <text x="1225" y="122" fill="#475569" font-size="11">• 401 Interceptor</text>
+  </g>
+
+  <!-- CONNECTOR 2 -> 3 -->
+  <line x1="750" y1="410" x2="750" y2="445" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="760" y="430" fill="#64748b" font-size="10">REST API / JSON Payload (Authorization: Bearer &lt;token&gt;)</text>
+
+  <!-- TIER 3: APPLICATION & API GATEWAY TIER -->
+  <g transform="translate(40, 445)" filter="url(#shadow)">
+    <rect width="1420" height="265" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="1420" height="30" rx="8" fill="#fae8ff"/>
+    <text x="20" y="20" fill="#86198f" font-size="12" font-weight="700">TIER 3: BACKEND APPLICATION &amp; API GATEWAY TIER (NODE.JS + EXPRESS.JS)</text>
+
+    <!-- Subgroup: Gateway & Security -->
+    <rect x="20" y="45" width="280" height="205" rx="6" fill="#faf5ff" stroke="#d8b4fe"/>
+    <text x="35" y="68" fill="#6b21a8" font-size="12" font-weight="700">API Gateway &amp; Middleware</text>
+    <text x="35" y="90" fill="#475569" font-size="11">• CORS Origin Configuration</text>
+    <text x="35" y="110" fill="#475569" font-size="11">• express.json(10mb limit)</text>
+    <text x="35" y="130" fill="#1d4ed8" font-size="11" font-weight="600">• protect Middleware (JWT verification)</text>
+    <text x="35" y="150" fill="#dc2626" font-size="11" font-weight="600">• authorize Middleware (5 roles RBAC)</text>
+    <text x="35" y="170" fill="#475569" font-size="11">• Centralized errorHandler</text>
+    <text x="35" y="190" fill="#475569" font-size="11">• AuditLog automatic action logging</text>
+    <text x="35" y="210" fill="#475569" font-size="11">• Health check (/api/health)</text>
+    <text x="35" y="230" fill="#475569" font-size="11">• Port: 5000 (dotenv configuration)</text>
+
+    <!-- Subgroup: 13 Controllers -->
+    <rect x="320" y="45" width="520" height="205" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="335" y="68" fill="#0f172a" font-size="12" font-weight="700">Business Logic Controllers (13 REST Modules)</text>
+    
+    <text x="335" y="92" fill="#475569" font-size="11">• authController (JWT login, me, user management)</text>
+    <text x="335" y="110" fill="#475569" font-size="11">• customerController (CRUD, credit limit, balance guard)</text>
+    <text x="335" y="128" fill="#475569" font-size="11">• productController (Catalog, active SKU stock tracking)</text>
+    <text x="335" y="146" fill="#475569" font-size="11">• orderController (Booking, approval, dispatch blocking check)</text>
+    <text x="335" y="164" fill="#475569" font-size="11">• invoiceController (GST billing, PDF data generation)</text>
+    <text x="335" y="182" fill="#475569" font-size="11">• productionController (Batch runs, material issue, scrap)</text>
+    <text x="335" y="200" fill="#475569" font-size="11">• costingController (Packet costing, gross profit margin %)</text>
+    <text x="335" y="218" fill="#475569" font-size="11">• reportController (15 Date-filterable statutory registers)</text>
+    <text x="335" y="236" fill="#475569" font-size="11">• paymentController, materialController, bomController, purchaseController</text>
+
+    <!-- Subgroup: Calculation Engines -->
+    <rect x="860" y="45" width="540" height="205" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+    <text x="875" y="68" fill="#15803d" font-size="12" font-weight="700">Statutory &amp; Mathematical Calculation Engines</text>
+    
+    <rect x="875" y="80" width="510" height="48" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
+    <text x="885" y="98" fill="#166534" font-size="11" font-weight="700">gstService (Indian GST Statutory Engine)</text>
+    <text x="885" y="116" fill="#475569" font-size="10">Intra-State: CGST 2.5% + SGST 2.5% | Inter-State: IGST 5% | Integer paise math</text>
+
+    <rect x="875" y="135" width="510" height="48" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
+    <text x="885" y="153" fill="#166534" font-size="11" font-weight="700">bomService (BOM &amp; Variance Engine)</text>
+    <text x="885" y="171" fill="#475569" font-size="10">Yield Variance % | Consumption Variance % | Automated ±3% Alert Flagging</text>
+
+    <rect x="875" y="190" width="510" height="48" rx="4" fill="#ffffff" stroke="#bbf7d0"/>
+    <text x="885" y="208" fill="#166534" font-size="11" font-weight="700">inventoryService (Double-Entry Ledger &amp; WAC Engine)</text>
+    <text x="885" y="226" fill="#475569" font-size="10">Atomic movement balance update | WAC recomputation | Negative stock prevention</text>
+  </g>
+
+  <!-- CONNECTOR 3 -> 4 -->
+  <line x1="750" y1="710" x2="750" y2="745" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="760" y="730" fill="#64748b" font-size="10">Mongoose 9.x ODM / MongoDB Wire Protocol</text>
+
+  <!-- TIER 4: PERSISTENCE LAYER -->
+  <g transform="translate(40, 745)" filter="url(#shadow)">
+    <rect width="1420" height="215" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="1420" height="30" rx="8" fill="#fef3c7"/>
+    <text x="20" y="20" fill="#92400e" font-size="12" font-weight="700">TIER 4: DATA PERSISTENCE TIER (MONGODB 8.x + MONGOOSE 9.x SCHEMAS)</text>
+
+    <!-- Schema Groups -->
+    <rect x="20" y="45" width="330" height="150" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="35" y="68" fill="#0f172a" font-size="12" font-weight="700">Master Data Collections</text>
+    <text x="35" y="88" fill="#475569" font-size="11">• User (bcrypt hashed passwords, role)</text>
+    <text x="35" y="106" fill="#475569" font-size="11">• Customer (stateCode 33/29, balances)</text>
+    <text x="35" y="124" fill="#475569" font-size="11">• Supplier (vendors, GSTIN, materialTypes)</text>
+    <text x="35" y="142" fill="#475569" font-size="11">• Product (Murukku, Mixture, Chips, Sweets)</text>
+    <text x="35" y="160" fill="#475569" font-size="11">• RawMaterial &amp; PackagingMaterial</text>
+
+    <rect x="370" y="45" width="330" height="150" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="385" y="68" fill="#0f172a" font-size="12" font-weight="700">Manufacturing &amp; BOM</text>
+    <text x="385" y="88" fill="#475569" font-size="11">• BOM (Formulas, RM &amp; PM ratios)</text>
+    <text x="385" y="106" fill="#475569" font-size="11">• ProductionRun (Batch runs, actuals)</text>
+    <text x="385" y="124" fill="#475569" font-size="11">• Expense (Direct labour, power/gas)</text>
+    <text x="385" y="142" fill="#475569" font-size="11">• Purchase (PO inward receipts, WAC)</text>
+    <text x="385" y="160" fill="#475569" font-size="11">• Yield &amp; Scrap tracking collections</text>
+
+    <rect x="720" y="45" width="330" height="150" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="735" y="68" fill="#0f172a" font-size="12" font-weight="700">Sales, Billing &amp; Receipts</text>
+    <text x="735" y="88" fill="#475569" font-size="11">• SalesOrder (Lifecycle: Submitted to Disp)</text>
+    <text x="735" y="106" fill="#475569" font-size="11">• Invoice (Tax invoices, CGST/SGST/IGST)</text>
+    <text x="735" y="124" fill="#475569" font-size="11">• Payment (Remittances, NEFT/UPI/Cash)</text>
+    <text x="735" y="142" fill="#475569" font-size="11">• Accounts Receivable aging data</text>
+    <text x="735" y="160" fill="#475569" font-size="11">• Historic pricing subdocuments</text>
+
+    <rect x="1070" y="45" width="330" height="150" rx="6" fill="#ecfdf5" stroke="#059669"/>
+    <text x="1085" y="68" fill="#047857" font-size="12" font-weight="700">Audit &amp; Double-Entry Ledgers</text>
+    <text x="1085" y="88" fill="#065f46" font-size="11" font-weight="700">• StockLedger (Immutable movements)</text>
+    <text x="1095" y="106" fill="#475569" font-size="10">+1 Inflow / -1 Outflow with balance log</text>
+    <text x="1085" y="126" fill="#065f46" font-size="11" font-weight="700">• AuditLog (Non-repudiation security)</text>
+    <text x="1095" y="144" fill="#475569" font-size="10">Action, User, IP address, timestamp, delta</text>
+    <text x="1085" y="166" fill="#475569" font-size="11">• Zero direct collection overwrite policy</text>
+  </g>
+</svg>

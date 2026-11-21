@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1150" width="100%" height="100%" style="background:#f8fafc; font-family:'Segoe UI', Inter, -apple-system, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- TITLE HEADER -->
+  <rect x="40" y="30" width="1520" height="70" rx="8" fill="#1e293b"/>
+  <text x="60" y="62" fill="#ffffff" font-size="20" font-weight="700">NIT TIRUCHIRAPPALLI — CDI PACKAGED FOOD MANUFACTURING ERP</text>
+  <text x="60" y="85" fill="#94a3b8" font-size="13">Complete Entity-Relationship (ER) Data Model — 15 Mongoose Schemas with Document References &amp; Embedded Collections</text>
+  <rect x="1390" y="48" width="150" height="32" rx="4" fill="#0ea5e9"/>
+  <text x="1465" y="69" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">MONGODB 8.x</text>
+
+  <!-- ENTITY CARD: USER -->
+  <g transform="translate(40, 130)" filter="url(#shadow)">
+    <rect width="210" height="200" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="210" height="32" rx="6" fill="#3b82f6"/>
+    <text x="105" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">USER</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">name : String</text>
+    <text x="15" y="88" fill="#475569" font-size="11">email : String [UK]</text>
+    <text x="15" y="106" fill="#475569" font-size="11">password : String (Hash)</text>
+    <text x="15" y="124" fill="#0284c7" font-size="11" font-weight="600">role : Enum (5 Roles)</text>
+    <text x="15" y="142" fill="#475569" font-size="11">phone : String</text>
+    <text x="15" y="160" fill="#475569" font-size="11">isActive : Boolean</text>
+    <text x="15" y="178" fill="#94a3b8" font-size="10">timestamps: true</text>
+  </g>
+
+  <!-- ENTITY CARD: CUSTOMER -->
+  <g transform="translate(40, 360)" filter="url(#shadow)">
+    <rect width="210" height="240" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="210" height="32" rx="6" fill="#f59e0b"/>
+    <text x="105" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">CUSTOMER</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">name : String</text>
+    <text x="15" y="88" fill="#475569" font-size="11">customerType: Retailer|Dist</text>
+    <text x="15" y="106" fill="#475569" font-size="11">gstin : String</text>
+    <text x="15" y="124" fill="#475569" font-size="11">address : String</text>
+    <text x="15" y="142" fill="#0284c7" font-size="11" font-weight="600">stateCode: 33 (TN)|29 (KA)</text>
+    <text x="15" y="160" fill="#475569" font-size="11">creditLimit : Number</text>
+    <text x="15" y="178" fill="#dc2626" font-size="11" font-weight="600">outstandingBalance: Num</text>
+    <text x="15" y="196" fill="#475569" font-size="11">customerPricing[]: Subdoc</text>
+    <text x="15" y="214" fill="#475569" font-size="11">isActive : Boolean</text>
+  </g>
+
+  <!-- ENTITY CARD: SUPPLIER -->
+  <g transform="translate(40, 630)" filter="url(#shadow)">
+    <rect width="210" height="200" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="210" height="32" rx="6" fill="#64748b"/>
+    <text x="105" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">SUPPLIER</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">name : String</text>
+    <text x="15" y="88" fill="#475569" font-size="11">contactPerson : String</text>
+    <text x="15" y="106" fill="#475569" font-size="11">gstin : String</text>
+    <text x="15" y="124" fill="#475569" font-size="11">phone, email, address</text>
+    <text x="15" y="142" fill="#475569" font-size="11">state : Tamil Nadu (33)</text>
+    <text x="15" y="160" fill="#475569" font-size="11">suppliedTypes[]: Enum</text>
+    <text x="15" y="178" fill="#475569" font-size="11">isActive : Boolean</text>
+  </g>
+
+  <!-- ENTITY CARD: PRODUCT -->
+  <g transform="translate(320, 130)" filter="url(#shadow)">
+    <rect width="230" height="250" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="230" height="32" rx="6" fill="#10b981"/>
+    <text x="115" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">PRODUCT (Finished Goods)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">name : String (Murukku, etc.)</text>
+    <text x="15" y="88" fill="#0f172a" font-size="11" font-weight="600">sku : String [UK] (MRK-200G)</text>
+    <text x="15" y="106" fill="#475569" font-size="11">category: Murukku|Mixture|Chips</text>
+    <text x="15" y="124" fill="#475569" font-size="11">packSize : 200, unit: 'g'</text>
+    <text x="15" y="142" fill="#16a34a" font-size="11" font-weight="600">sellingPrice : Number (₹50)</text>
+    <text x="15" y="160" fill="#475569" font-size="11">gstPercentage : 5%</text>
+    <text x="15" y="178" fill="#475569" font-size="11">hsnCode : 21069099</text>
+    <text x="15" y="196" fill="#0284c7" font-size="11" font-weight="600">currentStock : Number (88 pkts)</text>
+    <text x="15" y="214" fill="#475569" font-size="11">minStockLevel : Number (100)</text>
+    <text x="15" y="232" fill="#475569" font-size="11">isActive : Boolean</text>
+  </g>
+
+  <!-- ENTITY CARD: BOM -->
+  <g transform="translate(320, 420)" filter="url(#shadow)">
+    <rect width="230" height="210" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="230" height="32" rx="6" fill="#8b5cf6"/>
+    <text x="115" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">BILL OF MATERIALS (BOM)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#2563eb" font-size="11" font-weight="600">product : ObjectId [FK -> Product]</text>
+    <text x="15" y="88" fill="#475569" font-size="11">version : 'v1.0'</text>
+    <text x="15" y="106" fill="#475569" font-size="11">expectedOutput : 200 pkts</text>
+    <text x="15" y="124" fill="#475569" font-size="11">outputUnit : 'packets'</text>
+    <text x="15" y="142" fill="#059669" font-size="11">rawMaterials[] : Subdocs</text>
+    <text x="25" y="158" fill="#64748b" font-size="10">{ material FK, qty, unit }</text>
+    <text x="15" y="176" fill="#059669" font-size="11">packagingMaterials[] : Subdocs</text>
+    <text x="25" y="192" fill="#64748b" font-size="10">{ material FK, qty, unit }</text>
+  </g>
+
+  <!-- ENTITY CARD: RAW_MATERIAL -->
+  <g transform="translate(610, 130)" filter="url(#shadow)">
+    <rect width="230" height="230" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="230" height="32" rx="6" fill="#0284c7"/>
+    <text x="115" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">RAW MATERIAL</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">name : Rice Flour, Oil, etc.</text>
+    <text x="15" y="88" fill="#475569" font-size="11">code : String [UK] (RM-FLR-01)</text>
+    <text x="15" y="106" fill="#475569" font-size="11">unit : kg | litres | grams</text>
+    <text x="15" y="124" fill="#0284c7" font-size="11" font-weight="600">currentStock : Number (120 kg)</text>
+    <text x="15" y="142" fill="#475569" font-size="11">reorderLevel : Number</text>
+    <text x="15" y="160" fill="#16a34a" font-size="11" font-weight="600">valuationRate : WAC (₹43.125)</text>
+    <text x="15" y="178" fill="#475569" font-size="11">totalValue : Number (₹5,175)</text>
+    <text x="15" y="196" fill="#475569" font-size="11">hsnCode : String</text>
+    <text x="15" y="214" fill="#475569" font-size="11">isActive : Boolean</text>
+  </g>
+
+  <!-- ENTITY CARD: PACKAGING_MATERIAL -->
+  <g transform="translate(610, 390)" filter="url(#shadow)">
+    <rect width="230" height="210" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="230" height="32" rx="6" fill="#06b6d4"/>
+    <text x="115" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">PACKAGING MATERIAL</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">name : 200g Pouch, Carton</text>
+    <text x="15" y="88" fill="#475569" font-size="11">code : String [UK] (PKG-PCH-200)</text>
+    <text x="15" y="106" fill="#475569" font-size="11">unit : 'pieces'</text>
+    <text x="15" y="124" fill="#0284c7" font-size="11" font-weight="600">currentStock : Number (306 pcs)</text>
+    <text x="15" y="142" fill="#475569" font-size="11">reorderLevel : Number</text>
+    <text x="15" y="160" fill="#16a34a" font-size="11">valuationRate : Number (₹1.50)</text>
+    <text x="15" y="178" fill="#475569" font-size="11">totalValue : Number</text>
+    <text x="15" y="196" fill="#475569" font-size="11">isActive : Boolean</text>
+  </g>
+
+  <!-- ENTITY CARD: PURCHASE -->
+  <g transform="translate(320, 660)" filter="url(#shadow)">
+    <rect width="230" height="250" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="230" height="32" rx="6" fill="#475569"/>
+    <text x="115" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">PURCHASE (PO / Receipt)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">purchaseNumber : PO-2026-0001</text>
+    <text x="15" y="88" fill="#2563eb" font-size="11" font-weight="600">supplier : ObjectId [FK -> Supp]</text>
+    <text x="15" y="106" fill="#475569" font-size="11">invoiceNumber : String</text>
+    <text x="15" y="124" fill="#475569" font-size="11">purchaseDate : Date</text>
+    <text x="15" y="142" fill="#059669" font-size="11">items[] : Polymorphic Subdocs</text>
+    <text x="25" y="158" fill="#64748b" font-size="10">{ item, qty, rate, gst, total }</text>
+    <text x="15" y="176" fill="#475569" font-size="11">subtotal : Number (₹2,700)</text>
+    <text x="15" y="194" fill="#475569" font-size="11">totalTax : 5% GST (₹135)</text>
+    <text x="15" y="212" fill="#16a34a" font-size="11" font-weight="600">grandTotal : Number (₹2,835)</text>
+    <text x="15" y="230" fill="#2563eb" font-size="11">receivedBy : ObjectId [FK -> User]</text>
+  </g>
+
+  <!-- ENTITY CARD: PRODUCTION_RUN -->
+  <g transform="translate(900, 130)" filter="url(#shadow)">
+    <rect width="260" height="380" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="260" height="32" rx="6" fill="#9333ea"/>
+    <text x="130" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">PRODUCTION RUN (Batch)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">runNumber : PR-2026-0001 [UK]</text>
+    <text x="15" y="88" fill="#2563eb" font-size="11" font-weight="600">product : ObjectId [FK -> Prod]</text>
+    <text x="15" y="106" fill="#2563eb" font-size="11" font-weight="600">bom : ObjectId [FK -> BOM]</text>
+    <text x="15" y="124" fill="#475569" font-size="11">expectedOutput : 200 pkts</text>
+    <text x="15" y="142" fill="#0284c7" font-size="11" font-weight="600">actualOutput : 188 pkts</text>
+    <text x="15" y="160" fill="#dc2626" font-size="11" font-weight="600">yieldVariancePct : -6% [FLAGGED]</text>
+    <text x="15" y="178" fill="#059669" font-size="11">rawMaterials[]: Consumption</text>
+    <text x="25" y="194" fill="#64748b" font-size="10">{ planned, actual, variance, cost }</text>
+    <text x="15" y="212" fill="#059669" font-size="11">packagingMaterials[]: Scrap</text>
+    <text x="25" y="228" fill="#64748b" font-size="10">{ actual: 188, damaged: 6, total: 194 }</text>
+    <text x="15" y="246" fill="#475569" font-size="11">totalRawMaterialCost : ₹3,150.00</text>
+    <text x="15" y="264" fill="#475569" font-size="11">totalPackagingCost : ₹453.00</text>
+    <text x="15" y="282" fill="#475569" font-size="11">labourCost : ₹1,500, power: ₹752</text>
+    <text x="15" y="300" fill="#16a34a" font-size="11" font-weight="600">totalProductionCost : ₹5,855.00</text>
+    <text x="15" y="318" fill="#16a34a" font-size="11" font-weight="600">costPerPacket : ₹31.14</text>
+    <text x="15" y="336" fill="#475569" font-size="11">profitPerPacket : ₹18.86 (37.7%)</text>
+    <text x="15" y="354" fill="#2563eb" font-size="11">supervisor : ObjectId [FK -> User]</text>
+    <text x="15" y="370" fill="#475569" font-size="11">status : 'Completed'</text>
+  </g>
+
+  <!-- ENTITY CARD: SALES_ORDER -->
+  <g transform="translate(1210, 130)" filter="url(#shadow)">
+    <rect width="250" height="270" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="250" height="32" rx="6" fill="#f59e0b"/>
+    <text x="125" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">SALES ORDER</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">orderNumber : SO-2026-0001 [UK]</text>
+    <text x="15" y="88" fill="#2563eb" font-size="11" font-weight="600">customer : ObjectId [FK -> Cust]</text>
+    <text x="15" y="106" fill="#2563eb" font-size="11" font-weight="600">salesman : ObjectId [FK -> User]</text>
+    <text x="15" y="124" fill="#059669" font-size="11">items[] : Embedded Line Items</text>
+    <text x="25" y="140" fill="#64748b" font-size="10">{ product FK, qty, price, tax }</text>
+    <text x="15" y="158" fill="#475569" font-size="11">subtotal : ₹7,500.00</text>
+    <text x="15" y="176" fill="#475569" font-size="11">totalTax : ₹375.00</text>
+    <text x="15" y="194" fill="#16a34a" font-size="11" font-weight="600">grandTotal : ₹7,875.00</text>
+    <text x="15" y="212" fill="#0284c7" font-size="11" font-weight="600">status: Submitted|Approved|Disp</text>
+    <text x="15" y="230" fill="#2563eb" font-size="11">approvedBy : ObjectId [FK -> User]</text>
+    <text x="15" y="248" fill="#2563eb" font-size="11">invoice : ObjectId [FK -> Invoice]</text>
+    <text x="15" y="264" fill="#475569" font-size="10">dispatchedAt : Date (DISPATCH EVENT)</text>
+  </g>
+
+  <!-- ENTITY CARD: INVOICE -->
+  <g transform="translate(1210, 430)" filter="url(#shadow)">
+    <rect width="250" height="260" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="250" height="32" rx="6" fill="#ea580c"/>
+    <text x="125" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">INVOICE (GST Tax Invoice)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">invoiceNumber : INV-2026-0001</text>
+    <text x="15" y="88" fill="#2563eb" font-size="11" font-weight="600">order : ObjectId [FK -> Order]</text>
+    <text x="15" y="106" fill="#2563eb" font-size="11" font-weight="600">customer : ObjectId [FK -> Cust]</text>
+    <text x="15" y="124" fill="#475569" font-size="11">customerStateCode : 33 (TN)</text>
+    <text x="15" y="142" fill="#475569" font-size="11">taxableAmount : ₹7,500.00</text>
+    <text x="15" y="160" fill="#475569" font-size="11">cgstTotal : ₹187.50, sgst: ₹187.50</text>
+    <text x="15" y="178" fill="#16a34a" font-size="11" font-weight="600">grandTotal : ₹7,875.00</text>
+    <text x="15" y="196" fill="#475569" font-size="11">amountPaid : ₹4,000.00</text>
+    <text x="15" y="214" fill="#dc2626" font-size="11" font-weight="600">balanceDue : ₹3,875.00</text>
+    <text x="15" y="232" fill="#f59e0b" font-size="11">paymentStatus : 'Partially Paid'</text>
+    <text x="15" y="250" fill="#2563eb" font-size="11">generatedBy : ObjectId [FK -> User]</text>
+  </g>
+
+  <!-- ENTITY CARD: PAYMENT -->
+  <g transform="translate(1210, 720)" filter="url(#shadow)">
+    <rect width="250" height="190" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="250" height="32" rx="6" fill="#16a34a"/>
+    <text x="125" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">PAYMENT (Receipt)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">paymentNumber : PAY-2026-0001</text>
+    <text x="15" y="88" fill="#2563eb" font-size="11" font-weight="600">customer : ObjectId [FK -> Cust]</text>
+    <text x="15" y="106" fill="#2563eb" font-size="11" font-weight="600">invoice : ObjectId [FK -> Invoice]</text>
+    <text x="15" y="124" fill="#16a34a" font-size="11" font-weight="600">amount : ₹4,000.00</text>
+    <text x="15" y="142" fill="#475569" font-size="11">paymentMode : NEFT|UPI|CASH</text>
+    <text x="15" y="160" fill="#475569" font-size="11">referenceNumber : String</text>
+    <text x="15" y="178" fill="#2563eb" font-size="11">recordedBy : ObjectId [FK -> User]</text>
+  </g>
+
+  <!-- ENTITY CARD: STOCK_LEDGER -->
+  <g transform="translate(610, 630)" filter="url(#shadow)">
+    <rect width="260" height="280" rx="6" fill="#ffffff" stroke="#059669" stroke-width="2"/>
+    <rect width="260" height="32" rx="6" fill="#059669"/>
+    <text x="130" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">STOCK LEDGER (Double-Entry)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#059669" font-size="11" font-weight="600">itemType : RM | PM | Product</text>
+    <text x="15" y="88" fill="#2563eb" font-size="11" font-weight="600">item : ObjectId [refPath: itemType]</text>
+    <text x="15" y="106" fill="#475569" font-size="11">itemCategory : raw|pkg|finished</text>
+    <text x="15" y="124" fill="#0284c7" font-size="11" font-weight="600">movementType : Enum (7 Types)</text>
+    <text x="15" y="142" fill="#dc2626" font-size="11" font-weight="600">direction : +1 Inflow | -1 Outflow</text>
+    <text x="15" y="160" fill="#475569" font-size="11">quantity : Number, unit: String</text>
+    <text x="15" y="178" fill="#475569" font-size="11">unitRate : Number, totalValue: Num</text>
+    <text x="15" y="196" fill="#475569" font-size="11">balanceBefore : Number</text>
+    <text x="15" y="214" fill="#059669" font-size="11" font-weight="600">balanceAfter : Number</text>
+    <text x="15" y="232" fill="#475569" font-size="11">sourceDocumentType : Enum</text>
+    <text x="15" y="250" fill="#2563eb" font-size="11">sourceDocumentId : ObjectId [FK]</text>
+    <text x="15" y="268" fill="#2563eb" font-size="11">user : ObjectId [FK -> User]</text>
+  </g>
+
+  <!-- ENTITY CARD: AUDIT_LOG -->
+  <g transform="translate(900, 540)" filter="url(#shadow)">
+    <rect width="260" height="190" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="260" height="32" rx="6" fill="#475569"/>
+    <text x="130" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">AUDIT LOG (Security Trail)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#0f172a" font-size="11" font-weight="600">action : String (LOGIN, DISPATCH, etc.)</text>
+    <text x="15" y="88" fill="#475569" font-size="11">entity : Enum (15 Model Names)</text>
+    <text x="15" y="106" fill="#2563eb" font-size="11">entityId : ObjectId</text>
+    <text x="15" y="124" fill="#2563eb" font-size="11" font-weight="600">performedBy : ObjectId [FK -> User]</text>
+    <text x="15" y="142" fill="#475569" font-size="11">userName : String</text>
+    <text x="15" y="160" fill="#475569" font-size="11">details : Mixed Object</text>
+    <text x="15" y="178" fill="#475569" font-size="11">ipAddress : String, createdAt : Date</text>
+  </g>
+
+  <!-- ENTITY CARD: EXPENSE -->
+  <g transform="translate(900, 760)" filter="url(#shadow)">
+    <rect width="260" height="170" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="260" height="32" rx="6" fill="#64748b"/>
+    <text x="130" y="21" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">EXPENSE (Direct Overheads)</text>
+    <text x="15" y="52" fill="#0f172a" font-size="11" font-weight="600">_id : ObjectId [PK]</text>
+    <text x="15" y="70" fill="#475569" font-size="11">expenseNumber : EXP-2026-0001</text>
+    <text x="15" y="88" fill="#475569" font-size="11">category : LABOUR | GAS_POWER</text>
+    <text x="15" y="106" fill="#16a34a" font-size="11" font-weight="600">amount : Number (₹1,500, ₹752)</text>
+    <text x="15" y="124" fill="#2563eb" font-size="11">productionRun: ObjectId [FK -> Run]</text>
+    <text x="15" y="142" fill="#2563eb" font-size="11">recordedBy : ObjectId [FK -> User]</text>
+    <text x="15" y="160" fill="#475569" font-size="11">expenseDate : Date</text>
+  </g>
+
+  <!-- FOOTER NOTE -->
+  <rect x="40" y="970" width="1520" height="140" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="60" y="995" fill="#1e293b" font-size="13" font-weight="700">ARCHITECTURAL DESIGN NOTES ON RELATIONSHIPS &amp; CARDINALITIES:</text>
+  <text x="60" y="1020" fill="#475569" font-size="12">1. DISPATCH IS AN ATOMIC EVENT: Dispatch is NOT a standalone collection. It is an atomic operational action on SalesOrder (dispatchedAt, status: 'Dispatched')</text>
+  <text x="60" y="1040" fill="#475569" font-size="12">   that decrements Product.currentStock, writes StockLedger (movementType: 'SALES_DISPATCH', direction: -1), and logs to AuditLog.</text>
+  <text x="60" y="1060" fill="#475569" font-size="12">2. POLYMORPHIC DOUBLE-ENTRY STOCK LEDGER: StockLedger.item dynamically references RawMaterial, PackagingMaterial, or Product via Mongoose refPath.</text>
+  <text x="60" y="1080" fill="#475569" font-size="12">3. DOCUMENT EMBEDDING: Line items in SalesOrder, Invoice, Purchase, and BOM are embedded subdocuments to ensure historic audit immutability.</text>
+</svg>

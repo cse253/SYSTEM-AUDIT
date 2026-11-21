@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000" width="100%" height="100%" style="background:#f8fafc; font-family:'Segoe UI', Inter, -apple-system, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- TITLE -->
+  <rect x="40" y="25" width="1420" height="65" rx="8" fill="#1e293b"/>
+  <text x="65" y="55" fill="#ffffff" font-size="20" font-weight="700">NIT TIRUCHIRAPPALLI — DUAL-LOOP BUSINESS WORKFLOW DIAGRAM</text>
+  <text x="65" y="76" fill="#94a3b8" font-size="12">Integration of Loop A (Manufacturing &amp; Inventory) and Loop B (Order-to-Cash) with Finished Goods Convergence &amp; Audit Feeds</text>
+
+  <!-- LEFT: LOOP A (PRODUCTION & PROCUREMENT) -->
+  <g transform="translate(40, 110)" filter="url(#shadow)">
+    <rect width="450" height="690" rx="8" fill="#ffffff" stroke="#bae6fd" stroke-width="2"/>
+    <rect width="450" height="32" rx="8" fill="#0284c7"/>
+    <text x="225" y="22" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">LOOP A: PROCUREMENT &amp; PRODUCTION CYCLE</text>
+
+    <!-- Step P1 -->
+    <rect x="25" y="50" width="400" height="60" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+    <text x="40" y="73" fill="#0369a1" font-size="12" font-weight="700">1. Purchase Raw Materials &amp; Packaging</text>
+    <text x="40" y="93" fill="#475569" font-size="11">PO-2026-0001: 60 kg Rice Flour @ ₹45/kg (Taxable ₹2,700, GST ₹135)</text>
+
+    <!-- Step P2 -->
+    <rect x="25" y="125" width="400" height="60" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+    <text x="40" y="148" fill="#0369a1" font-size="12" font-weight="700">2. Inward Stock &amp; Dynamic WAC Valuation</text>
+    <text x="40" y="168" fill="#475569" font-size="11">Flour Stock: 100 + 60 = 160 kg | WAC Rate: ₹43.125/kg | Ledger Inflow +1</text>
+
+    <!-- Step P3 -->
+    <rect x="25" y="200" width="400" height="60" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+    <text x="40" y="223" fill="#0369a1" font-size="12" font-weight="700">3. Select Product Bill of Materials (BOM)</text>
+    <text x="40" y="243" fill="#475569" font-size="11">Murukku 200g BOM: Flour 40kg, Oil 10L, Pouches 200, Cartons 10</text>
+
+    <!-- Step P4 -->
+    <rect x="25" y="275" width="400" height="60" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+    <text x="40" y="298" fill="#0369a1" font-size="12" font-weight="700">4. Create Production Run (PR-2026-0001)</text>
+    <text x="40" y="318" fill="#475569" font-size="11">Planned Batch Output: 200 pkts | Material requirements locked</text>
+
+    <!-- Step P5 -->
+    <rect x="25" y="350" width="400" height="60" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+    <text x="40" y="373" fill="#0369a1" font-size="12" font-weight="700">5. Enter Actual Consumption &amp; Scrap</text>
+    <text x="40" y="393" fill="#475569" font-size="11">Flour 40kg, Oil 10.5L (+0.5L), 188 good pouches + 6 damaged pouches</text>
+
+    <!-- Step P6 -->
+    <rect x="25" y="425" width="400" height="65" rx="6" fill="#fef2f2" stroke="#fca5a5"/>
+    <text x="40" y="448" fill="#b91c1c" font-size="12" font-weight="700">6. Compute Variances &amp; Flag Outliers (&gt; 3%)</text>
+    <text x="40" y="466" fill="#b91c1c" font-size="11">Yield Variance: -6.0% [FLAGGED] | Oil Variance: +5.0% [FLAGGED]</text>
+    <text x="40" y="482" fill="#475569" font-size="10">Mandatory supervisor remarks required for audit compliance</text>
+
+    <!-- Step P7 -->
+    <rect x="25" y="505" width="400" height="60" rx="6" fill="#f0f9ff" stroke="#7dd3fc"/>
+    <text x="40" y="528" fill="#0369a1" font-size="12" font-weight="700">7. Deduct RM &amp; Packaging Stock Atomically</text>
+    <text x="40" y="548" fill="#475569" font-size="11">Flour: 120kg, Oil: 19.5L, Pouches: 306, Cartons: 21 | Ledger Direction: -1</text>
+
+    <!-- Step P8 -->
+    <rect x="25" y="580" width="400" height="85" rx="6" fill="#ecfdf5" stroke="#6ee7b7"/>
+    <text x="40" y="603" fill="#047857" font-size="12" font-weight="700">8. Batch Costing &amp; Cost Per Packet</text>
+    <text x="40" y="621" fill="#475569" font-size="11">RM: ₹3,150 + Pkg: ₹453 + Labour: ₹1,500 + Gas: ₹752 = ₹5,855</text>
+    <text x="40" y="639" fill="#047857" font-size="12" font-weight="700">Cost/Packet: ₹31.14 | Selling: ₹50.00 | Profit: ₹18.86 (37.7%)</text>
+    <text x="40" y="655" fill="#475569" font-size="10">INCREMENT FINISHED GOODS STOCK: +188 Packets</text>
+  </g>
+
+  <!-- CENTER: CENTRAL CONVERGENCE POINT (FINISHED GOODS) -->
+  <g transform="translate(530, 260)" filter="url(#shadow)">
+    <rect width="440" height="280" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="3"/>
+    <rect width="440" height="36" rx="10" fill="#16a34a"/>
+    <text x="220" y="24" fill="#ffffff" font-size="14" font-weight="700" text-anchor="middle">CENTRAL PIVOT: FINISHED GOODS INVENTORY</text>
+
+    <circle cx="220" cy="95" r="42" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="220" y="93" fill="#15803d" font-size="18" font-weight="700" text-anchor="middle">88 pkts</text>
+    <text x="220" y="112" fill="#15803d" font-size="10" font-weight="600" text-anchor="middle">CURRENT STOCK</text>
+
+    <text x="30" y="160" fill="#0f172a" font-size="12" font-weight="700">Product: Murukku 200 g (MRK-200G)</text>
+    <text x="30" y="180" fill="#475569" font-size="11">• Opening Balance: 50 packets (Ledger entry verified)</text>
+    <text x="30" y="198" fill="#15803d" font-size="11" font-weight="600">• Production Inflow: +188 packets (Run PR-2026-0001)</text>
+    <text x="30" y="216" fill="#475569" font-size="11">• Balance before dispatch: 238 packets</text>
+    <text x="30" y="234" fill="#dc2626" font-size="11" font-weight="600">• Retailer A Sales Dispatch: -150 packets</text>
+    <text x="30" y="252" fill="#047857" font-size="11" font-weight="700">• Final Closing Stock: 88 packets (100% Reconciled)</text>
+  </g>
+
+  <!-- CONNECTORS INTO CENTER -->
+  <line x1="490" y1="620" x2="530" y2="460" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow-green)"/>
+  <text x="475" y="530" fill="#16a34a" font-size="11" font-weight="700">+188 Good Packets</text>
+
+  <line x1="970" y1="460" x2="1010" y2="570" stroke="#dc2626" stroke-width="2" stroke-dasharray="4"/>
+  <text x="965" y="530" fill="#dc2626" font-size="11" font-weight="700">-150 Dispatched</text>
+
+  <!-- RIGHT: LOOP B (SALES & BILLING) -->
+  <g transform="translate(1010, 110)" filter="url(#shadow)">
+    <rect width="450" height="690" rx="8" fill="#ffffff" stroke="#fde68a" stroke-width="2"/>
+    <rect width="450" height="32" rx="8" fill="#d97706"/>
+    <text x="225" y="22" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">LOOP B: ORDER-TO-CASH &amp; DISPATCH CYCLE</text>
+
+    <!-- Step S1 -->
+    <rect x="25" y="50" width="400" height="55" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+    <text x="40" y="73" fill="#92400e" font-size="12" font-weight="700">1. Salesman Login &amp; Catalog View</text>
+    <text x="40" y="93" fill="#475569" font-size="11">Inspect catalog prices (Murukku 200g @ ₹50), view customer list</text>
+
+    <!-- Step S2 -->
+    <rect x="25" y="115" width="400" height="55" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+    <text x="40" y="138" fill="#92400e" font-size="12" font-weight="700">2. Place Sales Order (SO-2026-0001)</text>
+    <text x="40" y="158" fill="#475569" font-size="11">Customer: Retailer A (Tamil Nadu) | Qty: 150 pkts | Status: 'Submitted'</text>
+
+    <!-- Step S3 -->
+    <rect x="25" y="180" width="400" height="55" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+    <text x="40" y="203" fill="#92400e" font-size="12" font-weight="700">3. Admin Order Verification &amp; Approval</text>
+    <text x="40" y="223" fill="#475569" font-size="11">Verify customer credit limit &amp; pricing | Status updated to 'Approved'</text>
+
+    <!-- Step S4 -->
+    <rect x="25" y="245" width="400" height="65" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+    <text x="40" y="268" fill="#92400e" font-size="12" font-weight="700">4. Generate GST Tax Invoice (INV-2026-0001)</text>
+    <text x="40" y="286" fill="#475569" font-size="11">Intra-State: Taxable ₹7,500 + CGST 2.5% (₹187.50) + SGST 2.5% (₹187.50)</text>
+    <text x="40" y="302" fill="#92400e" font-size="11" font-weight="700">Invoice Total: ₹7,875.00 | Customer Balance += ₹7,875.00</text>
+
+    <!-- Step S5: Pre-Dispatch Check -->
+    <rect x="25" y="320" width="400" height="85" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+    <text x="40" y="343" fill="#1e40af" font-size="12" font-weight="700">5. Mandatory Pre-Dispatch Stock Availability Check</text>
+    <text x="40" y="361" fill="#15803d" font-size="11" font-weight="600">✓ Retailer A (150 pkts): Available 238 pkts >= 150 pkts -> DISPATCH PASS</text>
+    <text x="40" y="379" fill="#dc2626" font-size="11" font-weight="600">✗ Distributor B (120 pkts): Available 88 pkts &lt; 120 pkts -> DISPATCH BLOCKED</text>
+    <text x="40" y="395" fill="#dc2626" font-size="10">System strictly returns HTTP 400 detailing exact 32-packet shortage</text>
+
+    <!-- Step S6 -->
+    <rect x="25" y="415" width="400" height="60" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+    <text x="40" y="438" fill="#92400e" font-size="12" font-weight="700">6. Record Dispatch &amp; Handover</text>
+    <text x="40" y="458" fill="#475569" font-size="11">Order status: 'Dispatched' | StockLedger: SALES_DISPATCH -150 packets</text>
+
+    <!-- Step S7 -->
+    <rect x="25" y="485" width="400" height="60" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+    <text x="40" y="508" fill="#92400e" font-size="12" font-weight="700">7. Record Customer Payment (PAY-2026-0001)</text>
+    <text x="40" y="528" fill="#475569" font-size="11">Retailer A pays ₹4,000.00 via NEFT | Invoice balanceDue: ₹3,875.00</text>
+
+    <!-- Step S8 -->
+    <rect x="25" y="555" width="400" height="60" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+    <text x="40" y="578" fill="#92400e" font-size="12" font-weight="700">8. Customer Balance &amp; AR Ageing Classification</text>
+    <text x="40" y="598" fill="#475569" font-size="11">Outstanding: ₹3,875.00 | Ageing Bucket: 0–30 Days | Deactivation Guard Active</text>
+
+    <!-- Step S9 -->
+    <rect x="25" y="625" width="400" height="50" rx="6" fill="#ecfdf5" stroke="#6ee7b7"/>
+    <text x="40" y="645" fill="#047857" font-size="12" font-weight="700">9. Settlement &amp; Repeat Cycle</text>
+    <text x="40" y="663" fill="#475569" font-size="11">Zero balance enables customer deactivation if account ever closes</text>
+  </g>
+
+  <!-- BOTTOM: MONTHLY AUDIT & REPORTING FEEDS -->
+  <g transform="translate(40, 820)" filter="url(#shadow)">
+    <rect width="1420" height="150" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="1420" height="30" rx="8" fill="#f3e8ff"/>
+    <text x="20" y="20" fill="#6b21a8" font-size="12" font-weight="700">FEEDING MONTHLY AUDIT &amp; STATUTORY REGISTERS (15 DATE-FILTERABLE REPORTS)</text>
+
+    <rect x="20" y="45" width="220" height="90" rx="6" fill="#faf5ff" stroke="#d8b4fe"/>
+    <text x="35" y="68" fill="#581c87" font-size="11" font-weight="700">Sales &amp; GST Registers</text>
+    <text x="35" y="86" fill="#475569" font-size="10">• 1. Sales Register</text>
+    <text x="35" y="102" fill="#475569" font-size="10">• 2. Customer-Wise Sales</text>
+    <text x="35" y="118" fill="#475569" font-size="10">• 4. GST Summary (CGST/SGST/IGST)</text>
+
+    <rect x="260" y="45" width="220" height="90" rx="6" fill="#faf5ff" stroke="#d8b4fe"/>
+    <text x="275" y="68" fill="#581c87" font-size="11" font-weight="700">Procurement &amp; Materials</text>
+    <text x="275" y="86" fill="#475569" font-size="10">• 5. Purchase Register (PO receipts)</text>
+    <text x="275" y="102" fill="#475569" font-size="10">• 6. Raw Material Stock &amp; WAC</text>
+    <text x="275" y="118" fill="#475569" font-size="10">• 7. Packaging Material Stock</text>
+
+    <rect x="500" y="45" width="220" height="90" rx="6" fill="#faf5ff" stroke="#d8b4fe"/>
+    <text x="515" y="68" fill="#581c87" font-size="11" font-weight="700">Stock &amp; Traceability</text>
+    <text x="515" y="86" fill="#475569" font-size="10">• 8. Finished Goods Stock</text>
+    <text x="515" y="102" fill="#475569" font-size="10">• 9. Stock Movement Ledger</text>
+    <text x="515" y="118" fill="#475569" font-size="10">• Double-entry audit trail</text>
+
+    <rect x="740" y="45" width="220" height="90" rx="6" fill="#faf5ff" stroke="#d8b4fe"/>
+    <text x="755" y="68" fill="#581c87" font-size="11" font-weight="700">Production &amp; Variances</text>
+    <text x="755" y="86" fill="#475569" font-size="10">• 10. Production Run Report</text>
+    <text x="755" y="102" fill="#475569" font-size="10">• 11. Planned vs Actual Consumption</text>
+    <text x="755" y="118" fill="#475569" font-size="10">• 12. Wastage &amp; Damage Scrap</text>
+
+    <rect x="980" y="45" width="210" height="90" rx="6" fill="#faf5ff" stroke="#d8b4fe"/>
+    <text x="995" y="68" fill="#581c87" font-size="11" font-weight="700">Costing &amp; Profitability</text>
+    <text x="995" y="86" fill="#475569" font-size="10">• 13. Cost Per Packet &amp; Margin</text>
+    <text x="995" y="102" fill="#475569" font-size="10">• Batch overhead allocation</text>
+    <text x="995" y="118" fill="#475569" font-size="10">• Realized gross margin %</text>
+
+    <rect x="1210" y="45" width="190" height="90" rx="6" fill="#faf5ff" stroke="#d8b4fe"/>
+    <text x="1225" y="68" fill="#581c87" font-size="11" font-weight="700">Collections &amp; Ageing</text>
+    <text x="1225" y="86" fill="#475569" font-size="10">• 14. Payment Collection</text>
+    <text x="1225" y="102" fill="#475569" font-size="10">• 15. AR Ageing (0-90+ days)</text>
+    <text x="1225" y="118" fill="#475569" font-size="10">• AuditLog Security Trail</text>
+  </g>
+</svg>
