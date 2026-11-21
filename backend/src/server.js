@@ -19,6 +19,7 @@ const productionRoutes = require('./routes/productionRoutes');
 const inventoryRoutes = require('./routes/inventoryRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const costingRoutes = require('./routes/costingRoutes');
+const reportRoutes = require('./routes/reportRoutes');
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use('/api/production', productionRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/costing', costingRoutes);
+app.use('/api/reports', reportRoutes);
 
 // Catch 404 for undefined routes
 app.use((req, res) => {

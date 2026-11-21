@@ -18,6 +18,7 @@ import Production from './pages/Production';
 import Purchases from './pages/Purchases';
 import Inventory from './pages/Inventory';
 import Payments from './pages/Payments';
+import Reports from './pages/Reports';
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/purchases" element={<Purchases />} />
             <Route path="/payments" element={<Payments />} />
-            <Route path="/reports" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 6: Audit & Reports Module</div>} />
+            <Route path="/reports" element={<Reports />} />
           </Route>
 
           {/* Root redirect */}
