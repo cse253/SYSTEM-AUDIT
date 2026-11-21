@@ -6,6 +6,11 @@ const errorHandler = require('./middleware/errorHandler');
 
 // Route imports
 const authRoutes = require('./routes/authRoutes');
+const productRoutes = require('./routes/productRoutes');
+const customerRoutes = require('./routes/customerRoutes');
+const supplierRoutes = require('./routes/supplierRoutes');
+const materialRoutes = require('./routes/materialRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express();
 
@@ -33,6 +38,11 @@ app.get('/api/health', (req, res) => {
 
 // Mount Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/customers', customerRoutes);
+app.use('/api/suppliers', supplierRoutes);
+app.use('/api/materials', materialRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Catch 404 for undefined routes
 app.use((req, res) => {
