@@ -37,9 +37,20 @@ async function runPhase5Tests() {
 
       // 2. Fetch Retailer A and their invoice
       const retailerA = await Customer.findOne({ name: 'Retailer A' });
-      const invoice = await Invoice.findOne({ customer: retailerA._id });
+      const allRetailerInvoices = await Invoice.find({ customer: retailerA._id }).sort({ createdAt: -1 });
+      const invoice = allRetailerInvoices[0];
+      if (allRetailerInvoices.length > 1) {
+        const extraIds = allRetailerInvoices.slice(1).map((i) => i._id);
+        await Invoice.deleteMany({ _id: { $in: extraIds } });
+        await Payment.deleteMany({ invoice: { $in: extraIds } });
+      }
 
       assert(invoice && invoice.grandTotal === 7875, 'Found Retailer A GST Invoice of ₹7,875.00');
+
+      // Reset invoice and payment state for clean benchmark test
+      await Payment.deleteMany({ invoice: invoice._id });
+      await Invoice.findByIdAndUpdate(invoice._id, { amountPaid: 0, balanceDue: 7875, paymentStatus: 'Unpaid' });
+      await Customer.findByIdAndUpdate(retailerA._id, { outstandingBalance: 7875 });
 
       // 3. Step 6: Record ₹4,000 payment from Retailer A
       const payRes = await fetch(`http://localhost:${PORT}/api/payments`, {

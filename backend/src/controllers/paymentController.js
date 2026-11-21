@@ -5,9 +5,12 @@ const AuditLog = require('../models/AuditLog');
 
 // Helper to generate sequential payment number
 const generatePaymentNumber = async () => {
-  const count = await Payment.countDocuments();
   const year = new Date().getFullYear();
-  return `PAY-${year}-${String(count + 1).padStart(4, '0')}`;
+  let nextSeq = (await Payment.countDocuments()) + 1;
+  while (await Payment.exists({ paymentNumber: `PAY-${year}-${String(nextSeq).padStart(4, '0')}` })) {
+    nextSeq++;
+  }
+  return `PAY-${year}-${String(nextSeq).padStart(4, '0')}`;
 };
 
 // @desc    Record customer payment (supporting partial payments)

@@ -6,9 +6,12 @@ const { calculateGST } = require('../services/gstService');
 
 // Helper to generate sequential invoice number
 const generateInvoiceNumber = async () => {
-  const count = await Invoice.countDocuments();
   const year = new Date().getFullYear();
-  return `INV-${year}-${String(count + 1).padStart(4, '0')}`;
+  let nextSeq = (await Invoice.countDocuments()) + 1;
+  while (await Invoice.exists({ invoiceNumber: `INV-${year}-${String(nextSeq).padStart(4, '0')}` })) {
+    nextSeq++;
+  }
+  return `INV-${year}-${String(nextSeq).padStart(4, '0')}`;
 };
 
 // @desc    Generate GST Invoice from Approved Sales Order

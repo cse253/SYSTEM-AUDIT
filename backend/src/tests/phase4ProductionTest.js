@@ -30,6 +30,14 @@ async function runPhase4Tests() {
 
   const server = app.listen(PORT, async () => {
     try {
+      // Ensure benchmark opening balances
+      await RawMaterial.updateOne({ code: 'RM-FLOUR' }, { currentStock: 100, valuationRate: 42 });
+      await RawMaterial.updateOne({ code: 'RM-OIL' }, { currentStock: 30, valuationRate: 140 });
+      await RawMaterial.updateOne({ code: 'RM-SPICE' }, { currentStock: 5, valuationRate: 200 });
+      await PackagingMaterial.updateOne({ code: 'PKG-POUCH-200G' }, { currentStock: 500, unitRate: 2.5 });
+      await PackagingMaterial.updateOne({ code: 'PKG-CARTON' }, { currentStock: 30, unitRate: 15 });
+      await Product.updateOne({ sku: 'MRK-200G' }, { currentStock: 50 });
+
       // Login Supervisor & Admin
       const supLogin = await fetch(`http://localhost:${PORT}/api/auth/login`, {
         method: 'POST',

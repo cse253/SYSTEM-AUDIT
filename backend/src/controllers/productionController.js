@@ -10,9 +10,12 @@ const { calculateProductionVariances } = require('../services/bomService');
 
 // Helper to generate sequential production run number
 const generateRunNumber = async () => {
-  const count = await ProductionRun.countDocuments();
   const year = new Date().getFullYear();
-  return `PR-${year}-${String(count + 1).padStart(4, '0')}`;
+  let nextSeq = (await ProductionRun.countDocuments()) + 1;
+  while (await ProductionRun.exists({ runNumber: `PR-${year}-${String(nextSeq).padStart(4, '0')}` })) {
+    nextSeq++;
+  }
+  return `PR-${year}-${String(nextSeq).padStart(4, '0')}`;
 };
 
 // @desc    Create and execute production run batch

@@ -7,9 +7,12 @@ const AuditLog = require('../models/AuditLog');
 
 // Helper to generate sequential purchase number
 const generatePurchaseNumber = async () => {
-  const count = await Purchase.countDocuments();
   const year = new Date().getFullYear();
-  return `PO-${year}-${String(count + 1).padStart(4, '0')}`;
+  let nextSeq = (await Purchase.countDocuments()) + 1;
+  while (await Purchase.exists({ purchaseNumber: `PO-${year}-${String(nextSeq).padStart(4, '0')}` })) {
+    nextSeq++;
+  }
+  return `PO-${year}-${String(nextSeq).padStart(4, '0')}`;
 };
 
 // @desc    Record new purchase receipt

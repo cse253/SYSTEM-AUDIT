@@ -7,9 +7,12 @@ const { calculateGST } = require('../services/gstService');
 
 // Helper to generate sequential order number
 const generateOrderNumber = async () => {
-  const count = await SalesOrder.countDocuments();
   const year = new Date().getFullYear();
-  return `SO-${year}-${String(count + 1).padStart(4, '0')}`;
+  let nextSeq = (await SalesOrder.countDocuments()) + 1;
+  while (await SalesOrder.exists({ orderNumber: `SO-${year}-${String(nextSeq).padStart(4, '0')}` })) {
+    nextSeq++;
+  }
+  return `SO-${year}-${String(nextSeq).padStart(4, '0')}`;
 };
 
 // @desc    Create new sales order

@@ -42,9 +42,11 @@ async function runPhase3Tests() {
       const adminToken = (await adminLogin.json()).token;
 
       // 2. Fetch master data IDs
+      await Product.updateOne({ sku: 'MRK-200G' }, { currentStock: 50 });
       const murukku = await Product.findOne({ sku: 'MRK-200G' });
       const retailerA = await Customer.findOne({ name: 'Retailer A' });
       const distributorB = await Customer.findOne({ name: 'Distributor B' });
+      const initialRetailerBalance = retailerA.outstandingBalance || 0;
 
       // 3. Test Intra-State Order (Retailer A in Tamil Nadu): 150 pkts @ ₹50
       const order1Res = await fetch(`http://localhost:${PORT}/api/orders`, {
@@ -118,8 +120,8 @@ async function runPhase3Tests() {
       // 7. Verify Customer Outstanding Balance updated
       const updatedRetailerA = await Customer.findById(retailerA._id);
       assert(
-        updatedRetailerA.outstandingBalance === 7875,
-        'Customer Retailer A outstanding balance updated to ₹7,875.00'
+        updatedRetailerA.outstandingBalance === initialRetailerBalance + 7875,
+        `Customer Retailer A outstanding balance accurately incremented by ₹7,875.00 (from ₹${initialRetailerBalance} to ₹${updatedRetailerA.outstandingBalance})`
       );
 
       // 8. Test Stock Check: Order 2 (120 pkts) when Murukku stock is only 50 packets

@@ -6,8 +6,10 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node src/server.js",
+    "test": "node src/tests/runAllTests.js",
     "seed:users": "node src/scripts/seedUsers.js",
-    "seed:master": "node src/scripts/seedMasterData.js"
+    "seed:master": "node src/scripts/seedMasterData.js",
+    "seed:benchmark": "node src/scripts/runBenchmarkScenario.js"
   },
   "keywords": [
     "food-manufacturing",
