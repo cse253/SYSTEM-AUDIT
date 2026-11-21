@@ -17,6 +17,7 @@ import BOMList from './pages/BOMList';
 import Production from './pages/Production';
 import Purchases from './pages/Purchases';
 import Inventory from './pages/Inventory';
+import Payments from './pages/Payments';
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
             <Route path="/production" element={<Production />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/purchases" element={<Purchases />} />
-            <Route path="/payments" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 5: Payments & Receivables Module</div>} />
+            <Route path="/payments" element={<Payments />} />
             <Route path="/reports" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 6: Audit & Reports Module</div>} />
           </Route>
 
