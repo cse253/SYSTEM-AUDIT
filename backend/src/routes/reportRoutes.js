@@ -17,9 +17,9 @@ const {
   getPaymentCollectionReport,
   getOutstandingAgeingReport,
 } = require('../controllers/reportController');
-const { protect } = require('../middleware/auth');
+const { protect, authorize } = require('../middleware/auth');
 
-router.use(protect); // Auditor, Admin, Owner can read all reports
+router.use(protect, authorize('admin', 'owner', 'accountant_auditor')); // Restricted to Auditor, Admin, and Owner
 
 router.get('/sales-register', getSalesRegister);
 router.get('/customer-sales', getCustomerWiseSales);

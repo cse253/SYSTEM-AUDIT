@@ -69,9 +69,34 @@ const seedMasterData = async () => {
     ];
 
     for (const p of additionalProducts) {
-      const exists = await Product.findOne({ sku: p.sku });
-      if (!exists) {
-        await Product.create(p);
+      let prod = await Product.findOne({ sku: p.sku });
+      if (!prod) {
+        prod = await Product.create(p);
+      }
+      // Ensure matching OPENING_BALANCE in StockLedger (idempotent, no duplicates)
+      const existingLedger = await StockLedger.findOne({
+        item: prod._id,
+        movementType: 'OPENING_BALANCE',
+      });
+      if (!existingLedger) {
+        await StockLedger.create({
+          itemType: 'Product',
+          item: prod._id,
+          itemName: prod.name,
+          itemCategory: 'finished_goods',
+          movementType: 'OPENING_BALANCE',
+          direction: 1,
+          quantity: p.currentStock,
+          unit: prod.unit,
+          unitRate: prod.sellingPrice,
+          totalValue: p.currentStock * prod.sellingPrice,
+          balanceBefore: 0,
+          balanceAfter: p.currentStock,
+          sourceDocumentType: 'InitialSetup',
+          remarks: `Initial opening balance for ${prod.name}`,
+          user: admin._id,
+        });
+        console.log(`[Seed Master] Recorded Opening StockLedger for: ${prod.name} (${p.currentStock} pkts)`);
       }
     }
 

@@ -145,6 +145,14 @@ const deleteCustomer = async (req, res, next) => {
       return res.status(404).json({ success: false, message: 'Customer not found' });
     }
 
+    // Business Rule: Cannot deactivate customer with pending receivables
+    if (customer.outstandingBalance && customer.outstandingBalance > 0) {
+      return res.status(400).json({
+        success: false,
+        message: `Cannot deactivate customer '${customer.name}' with active outstanding balance of ₹${customer.outstandingBalance.toFixed(2)}. Please settle all pending invoices first.`,
+      });
+    }
+
     customer.isActive = false;
     await customer.save();
 

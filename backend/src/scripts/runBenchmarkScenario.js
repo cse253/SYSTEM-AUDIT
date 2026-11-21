@@ -91,6 +91,40 @@ const runBenchmarkScenario = async () => {
       user: admin._id,
     });
 
+    // Opening balances for secondary catalog products
+    const additionalProducts = [
+      { name: 'Special Mixture 250 g', sku: 'MIX-250G', category: 'Mixture', packSize: 250, sellingPrice: 65, gstPercentage: 5, hsnCode: '21069099', unit: 'packets', currentStock: 40, minStockLevel: 25 },
+      { name: 'Banana Chips (Coconut Oil) 200 g', sku: 'CHP-BAN-200G', category: 'Chips', packSize: 200, sellingPrice: 70, gstPercentage: 5, hsnCode: '20081940', unit: 'packets', currentStock: 35, minStockLevel: 20 },
+      { name: 'Traditional Mysore Pak 250 g', sku: 'SWT-MYSPK-250G', category: 'Sweets', packSize: 250, sellingPrice: 120, gstPercentage: 5, hsnCode: '21069099', unit: 'packets', currentStock: 25, minStockLevel: 15 },
+    ];
+
+    for (const p of additionalProducts) {
+      let prod = await Product.findOne({ sku: p.sku });
+      if (!prod) {
+        prod = await Product.create(p);
+      } else {
+        prod.currentStock = p.currentStock;
+        await prod.save();
+      }
+      await StockLedger.create({
+        itemType: 'Product',
+        item: prod._id,
+        itemName: prod.name,
+        itemCategory: 'finished_goods',
+        movementType: 'OPENING_BALANCE',
+        direction: 1,
+        quantity: p.currentStock,
+        unit: prod.unit,
+        unitRate: prod.sellingPrice,
+        totalValue: p.currentStock * prod.sellingPrice,
+        balanceBefore: 0,
+        balanceAfter: p.currentStock,
+        sourceDocumentType: 'InitialSetup',
+        remarks: `Benchmark opening stock for ${prod.name}`,
+        user: admin._id,
+      });
+    }
+
     // 2. Raw Materials
     // Flour: 100 kg @ ₹42/kg
     let flour = await RawMaterial.findOne({ code: 'RM-FLOUR' });
@@ -251,6 +285,36 @@ const runBenchmarkScenario = async () => {
       sourceDocumentNumber: 'PO-2026-0001',
       remarks: 'Step 1 benchmark purchase',
       userId: supervisor._id,
+    });
+
+    // Create Purchase Register Record
+    await Purchase.create({
+      purchaseNumber: 'PO-2026-0001',
+      supplier: supplier._id,
+      invoiceNumber: 'BILL-AGRO-BENCH-01',
+      items: [
+        {
+          itemType: 'RawMaterial',
+          item: flour._id,
+          itemName: flour.name,
+          quantity: 60,
+          unit: 'kg',
+          unitRate: 45,
+          gstPercentage: 5,
+          taxableAmount: 2700,
+          cgstAmount: 67.5,
+          sgstAmount: 67.5,
+          igstAmount: 0,
+          totalAmount: 2835,
+        },
+      ],
+      subtotal: 2700,
+      totalTax: 135,
+      grandTotal: 2835,
+      purchaseDate: new Date(),
+      status: 'Received',
+      receivedBy: supervisor._id,
+      remarks: 'Step 1 benchmark purchase of 60 kg flour at ₹45/kg',
     });
 
     const flourStep1 = await RawMaterial.findOne({ code: 'RM-FLOUR' });

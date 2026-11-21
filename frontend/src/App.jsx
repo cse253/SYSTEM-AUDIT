@@ -37,22 +37,118 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/suppliers" element={<Suppliers />} />
-            <Route path="/materials" element={<Materials />} />
-
-            {/* Placeholders for upcoming phases */}
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/orders/new" element={<NewOrder />} />
-            <Route path="/invoices" element={<Invoices />} />
-            <Route path="/bom" element={<BOMList />} />
-            <Route path="/production" element={<Production />} />
-            <Route path="/inventory" element={<Inventory />} />
-            <Route path="/purchases" element={<Purchases />} />
-            <Route path="/payments" element={<Payments />} />
-            <Route path="/reports" element={<Reports />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute allowedRoles={['salesman', 'admin', 'production_supervisor', 'accountant_auditor', 'owner']}>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <ProtectedRoute allowedRoles={['salesman', 'admin', 'production_supervisor', 'accountant_auditor', 'owner']}>
+                  <Products />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/customers"
+              element={
+                <ProtectedRoute allowedRoles={['salesman', 'admin', 'accountant_auditor', 'owner']}>
+                  <Customers />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/suppliers"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'production_supervisor', 'accountant_auditor', 'owner']}>
+                  <Suppliers />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/materials"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'production_supervisor', 'accountant_auditor', 'owner']}>
+                  <Materials />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/orders"
+              element={
+                <ProtectedRoute allowedRoles={['salesman', 'admin', 'accountant_auditor', 'owner']}>
+                  <Orders />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/orders/new"
+              element={
+                <ProtectedRoute allowedRoles={['salesman', 'admin', 'owner']}>
+                  <NewOrder />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/invoices"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'accountant_auditor', 'owner']}>
+                  <Invoices />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/bom"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'production_supervisor', 'accountant_auditor', 'owner']}>
+                  <BOMList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/production"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'production_supervisor', 'accountant_auditor', 'owner']}>
+                  <Production />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/inventory"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'production_supervisor', 'accountant_auditor', 'owner']}>
+                  <Inventory />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/purchases"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'production_supervisor', 'accountant_auditor', 'owner']}>
+                  <Purchases />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/payments"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'accountant_auditor', 'owner']}>
+                  <Payments />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/reports"
+              element={
+                <ProtectedRoute allowedRoles={['admin', 'accountant_auditor', 'owner']}>
+                  <Reports />
+                </ProtectedRoute>
+              }
+            />
           </Route>
 
           {/* Root redirect */}
