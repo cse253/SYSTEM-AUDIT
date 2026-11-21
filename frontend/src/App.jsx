@@ -10,6 +10,9 @@ import Products from './pages/Products';
 import Customers from './pages/Customers';
 import Suppliers from './pages/Suppliers';
 import Materials from './pages/Materials';
+import Orders from './pages/Orders';
+import NewOrder from './pages/NewOrder';
+import Invoices from './pages/Invoices';
 
 function App() {
   return (
@@ -35,9 +38,9 @@ function App() {
             <Route path="/materials" element={<Materials />} />
 
             {/* Placeholders for upcoming phases */}
-            <Route path="/orders" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 3: Sales Orders Module</div>} />
-            <Route path="/orders/new" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 3: New Sales Order Module</div>} />
-            <Route path="/invoices" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 3: GST Invoices Module</div>} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/orders/new" element={<NewOrder />} />
+            <Route path="/invoices" element={<Invoices />} />
             <Route path="/bom" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 4: Bill of Materials Module</div>} />
             <Route path="/production" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 4: Production Runs Module</div>} />
             <Route path="/inventory" element={<div className="p-6 bg-white rounded-xl border border-slate-200">Phase 4: Stock Ledger Module</div>} />
