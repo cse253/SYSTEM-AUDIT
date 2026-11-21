@@ -7,6 +7,7 @@ const Supplier = require('../models/Supplier');
 const RawMaterial = require('../models/RawMaterial');
 const PackagingMaterial = require('../models/PackagingMaterial');
 const StockLedger = require('../models/StockLedger');
+const BOM = require('../models/BOM');
 
 const seedMasterData = async () => {
   try {
@@ -319,6 +320,29 @@ const seedMasterData = async () => {
         suppliedMaterialTypes: ['PackagingMaterial'],
       });
       console.log('[Seed Master] Created Supplier: Supreme Packaging Industries');
+    }
+
+    // 6. Seed Benchmark BOM for Murukku 200 g
+    let murukkuBOM = await BOM.findOne({ product: murukku._id });
+    if (!murukkuBOM) {
+      murukkuBOM = await BOM.create({
+        product: murukku._id,
+        version: 'v1.0',
+        expectedOutput: 200,
+        outputUnit: 'packets',
+        rawMaterials: [
+          { material: flour._id, quantity: 40, unit: 'kg' },
+          { material: oil._id, quantity: 10, unit: 'litres' },
+          { material: spice._id, quantity: 1.2, unit: 'kg' },
+        ],
+        packagingMaterials: [
+          { material: pouch._id, quantity: 200, unit: 'pieces' },
+          { material: carton._id, quantity: 10, unit: 'pieces' },
+        ],
+        notes: 'Standard Murukku 200g production recipe batch for 200 packets',
+        isActive: true,
+      });
+      console.log('[Seed Master] Created Benchmark BOM for Murukku 200 g (200 packets per batch)');
     }
 
     console.log('[Seed Master Data] Successfully completed master data seeding!');
