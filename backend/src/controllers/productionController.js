@@ -118,6 +118,42 @@ const createProductionRun = async (req, res, next) => {
     const profitMarginPercentage =
       sellingPrice > 0 ? Math.round((profitPerPacket / sellingPrice) * 10000) / 100 : 0;
 
+    // PRE-VALIDATE STOCK AVAILABILITY TO ENSURE COMPLETE ATOMICITY
+    const shortages = [];
+    for (const rm of varianceResult.rawMaterials) {
+      const rmDoc = await RawMaterial.findById(rm.material);
+      if (!rmDoc || rmDoc.currentStock < rm.actualQuantity) {
+        shortages.push({
+          type: 'RawMaterial',
+          materialName: rm.materialName,
+          available: rmDoc ? rmDoc.currentStock : 0,
+          requested: rm.actualQuantity,
+          unit: rm.unit,
+        });
+      }
+    }
+
+    for (const pm of varianceResult.packagingMaterials) {
+      const pmDoc = await PackagingMaterial.findById(pm.material);
+      if (!pmDoc || pmDoc.currentStock < pm.totalQuantityUsed) {
+        shortages.push({
+          type: 'PackagingMaterial',
+          materialName: pm.materialName,
+          available: pmDoc ? pmDoc.currentStock : 0,
+          requested: pm.totalQuantityUsed,
+          unit: pm.unit,
+        });
+      }
+    }
+
+    if (shortages.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Cannot execute production run: Insufficient stock for one or more materials.',
+        shortages,
+      });
+    }
+
     const runNumber = await generateRunNumber();
 
     // 4. ATOMIC STOCK MOVEMENTS

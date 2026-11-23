@@ -8,6 +8,7 @@ const tests = [
   'src/tests/phase4ProductionTest.js',
   'src/tests/phase5CostingPaymentTest.js',
   'src/tests/phase6ReportsTest.js',
+  'src/tests/phase7HardeningTest.js',
   'src/scripts/runBenchmarkScenario.js',
 ];
 
@@ -28,5 +29,5 @@ for (const test of tests) {
 }
 
 console.log('\n======================================================');
-console.log('   ALL 7 TEST SUITES & BENCHMARKS PASSED (100% OK)    ');
+console.log('   ALL 8 TEST SUITES & BENCHMARKS PASSED (100% OK)    ');
 console.log('======================================================\n');

@@ -4,6 +4,7 @@ const {
   createOrder,
   getOrders,
   getOrderById,
+  updateOrder,
   approveOrder,
   rejectOrder,
   dispatchOrder,
@@ -17,7 +18,8 @@ router.route('/')
   .post(authorize('salesman', 'admin', 'owner'), createOrder);
 
 router.route('/:id')
-  .get(getOrderById);
+  .get(getOrderById)
+  .put(authorize('admin', 'owner'), updateOrder);
 
 router.put('/:id/approve', authorize('admin', 'owner'), approveOrder);
 router.put('/:id/reject', authorize('admin', 'owner'), rejectOrder);

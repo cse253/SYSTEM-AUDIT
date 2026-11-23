@@ -14,6 +14,7 @@ import {
   Eye,
   Check,
   X,
+  Edit,
 } from 'lucide-react';
 
 const Orders = () => {
@@ -27,6 +28,12 @@ const Orders = () => {
   const [actionError, setActionError] = useState('');
   const [actionSuccess, setActionSuccess] = useState('');
   const [selectedOrder, setSelectedOrder] = useState(null);
+
+  // Edit Order State
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editingOrder, setEditingOrder] = useState(null);
+  const [editItems, setEditItems] = useState([]);
+  const [editRemarks, setEditRemarks] = useState('');
 
   const fetchOrders = async () => {
     try {
@@ -97,6 +104,69 @@ const Orders = () => {
       } else {
         setActionError(msg);
       }
+    }
+  };
+
+  const handleReject = async (orderId) => {
+    const reason = window.prompt('Enter rejection reason:', 'Price dispute / Customer requested cancellation');
+    if (!reason) return;
+    setActionError('');
+    setActionSuccess('');
+    try {
+      const res = await api.put(`/orders/${orderId}/reject`, { reason });
+      if (res.data.success) {
+        setActionSuccess(`Order ${res.data.order?.orderNumber || ''} marked as Rejected.`);
+        fetchOrders();
+      }
+    } catch (err) {
+      setActionError(err.response?.data?.message || 'Error rejecting order');
+    }
+  };
+
+  const openEditModal = (order) => {
+    setEditingOrder(order);
+    setEditItems(
+      order.items.map((i) => ({
+        product: i.product?._id || i.product,
+        productName: i.productName,
+        quantity: i.quantity,
+        unitPrice: i.unitPrice,
+        unit: i.unit || 'packets',
+      }))
+    );
+    setEditRemarks(order.remarks || '');
+    setEditModalOpen(true);
+  };
+
+  const handleItemChange = (index, field, value) => {
+    const updated = [...editItems];
+    updated[index][field] = value;
+    setEditItems(updated);
+  };
+
+  const handleSaveEdit = async (e) => {
+    e.preventDefault();
+    setActionError('');
+    setActionSuccess('');
+    try {
+      const payload = {
+        items: editItems.map((i) => ({
+          product: i.product,
+          quantity: Number(i.quantity),
+          unitPrice: Number(i.unitPrice),
+        })),
+        remarks: editRemarks,
+      };
+      const res = await api.put(`/orders/${editingOrder._id}`, payload);
+      if (res.data.success) {
+        setActionSuccess(
+          `Order ${res.data.order.orderNumber} updated successfully! New Grand Total: ₹${res.data.order.grandTotal.toFixed(2)}`
+        );
+        setEditModalOpen(false);
+        fetchOrders();
+      }
+    } catch (err) {
+      setActionError(err.response?.data?.message || 'Failed to update order');
     }
   };
 
@@ -274,19 +344,35 @@ const Orders = () => {
                       {isAdminOrOwner && (
                         <td className="py-3 px-4 text-right space-x-1">
                           {o.status === 'Submitted' && (
-                            <button
-                              onClick={() => handleApprove(o._id)}
-                              className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded text-[11px] transition-colors"
-                              title="Approve Order"
-                            >
-                              Approve
-                            </button>
+                            <div className="inline-flex items-center gap-1">
+                              <button
+                                onClick={() => handleApprove(o._id)}
+                                className="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded text-[11px] transition-colors cursor-pointer"
+                                title="Approve Order"
+                              >
+                                Approve
+                              </button>
+                              <button
+                                onClick={() => openEditModal(o)}
+                                className="px-2 py-1 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded text-[11px] transition-colors cursor-pointer"
+                                title="Edit Quantities or Prices"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={() => handleReject(o._id)}
+                                className="px-2 py-1 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded text-[11px] transition-colors cursor-pointer"
+                                title="Reject Order"
+                              >
+                                Reject
+                              </button>
+                            </div>
                           )}
 
                           {o.status === 'Approved' && !o.invoice && (
                             <button
                               onClick={() => handleGenerateInvoice(o._id)}
-                              className="px-2.5 py-1 bg-purple-600 hover:bg-purple-500 text-white font-semibold rounded text-[11px] transition-colors"
+                              className="px-2.5 py-1 bg-purple-600 hover:bg-purple-500 text-white font-semibold rounded text-[11px] transition-colors cursor-pointer"
                               title="Generate GST Tax Invoice"
                             >
                               Generate Invoice
@@ -296,7 +382,7 @@ const Orders = () => {
                           {['Approved', 'Invoiced'].includes(o.status) && (
                             <button
                               onClick={() => handleDispatch(o._id)}
-                              className={`px-2.5 py-1 text-navy-900 font-semibold rounded text-[11px] transition-colors ${
+                              className={`px-2.5 py-1 text-navy-900 font-semibold rounded text-[11px] transition-colors cursor-pointer ${
                                 canFulfill
                                   ? 'bg-amber-500 hover:bg-amber-400'
                                   : 'bg-slate-200 text-slate-500 hover:bg-rose-100 hover:text-rose-700'
@@ -320,6 +406,96 @@ const Orders = () => {
           </table>
         </div>
       </div>
+
+      {/* Edit Order Modal */}
+      {editModalOpen && editingOrder && (
+        <div className="fixed inset-0 z-50 bg-navy-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-lg w-full overflow-hidden border border-slate-200">
+            <div className="px-5 py-4 bg-navy-900 text-white flex items-center justify-between">
+              <div>
+                <h3 className="font-bold text-sm flex items-center gap-2">
+                  <Edit className="w-4 h-4 text-amber-400" />
+                  Modify Order: {editingOrder.orderNumber}
+                </h3>
+                <p className="text-[11px] text-slate-300 mt-0.5">
+                  Customer: {editingOrder.customer?.name} ({editingOrder.customer?.state})
+                </p>
+              </div>
+              <button
+                onClick={() => setEditModalOpen(false)}
+                className="text-slate-400 hover:text-white transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveEdit} className="p-5 space-y-4">
+              <div className="space-y-3">
+                <label className="block text-xs font-semibold text-navy-900 uppercase tracking-wider">
+                  Line Items
+                </label>
+                {editItems.map((item, idx) => (
+                  <div key={idx} className="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-2">
+                    <div className="font-semibold text-xs text-navy-900">{item.productName}</div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="block text-[10px] text-slate-500 font-medium">Quantity ({item.unit})</label>
+                        <input
+                          type="number"
+                          min="1"
+                          required
+                          value={item.quantity}
+                          onChange={(e) => handleItemChange(idx, 'quantity', e.target.value)}
+                          className="w-full px-2 py-1 text-xs border border-slate-300 rounded font-semibold"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] text-slate-500 font-medium">Unit Price (₹)</label>
+                        <input
+                          type="number"
+                          min="0.01"
+                          step="0.01"
+                          required
+                          value={item.unitPrice}
+                          onChange={(e) => handleItemChange(idx, 'unitPrice', e.target.value)}
+                          className="w-full px-2 py-1 text-xs border border-slate-300 rounded font-semibold"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-navy-900 mb-1">Remarks / Note</label>
+                <input
+                  type="text"
+                  value={editRemarks}
+                  onChange={(e) => setEditRemarks(e.target.value)}
+                  placeholder="e.g. Price adjusted per owner approval"
+                  className="w-full px-3 py-1.5 text-xs border border-slate-300 rounded-lg"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setEditModalOpen(false)}
+                  className="px-3 py-1.5 text-xs text-slate-600 hover:text-navy-900 font-semibold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-1.5 text-xs bg-navy-900 hover:bg-navy-800 text-amber-400 font-bold rounded-lg transition-colors cursor-pointer"
+                >
+                  Save & Recalculate GST
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

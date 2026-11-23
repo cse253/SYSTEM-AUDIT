@@ -118,7 +118,15 @@ const getInvoices = async (req, res, next) => {
     const query = {};
 
     if (customerId) query.customer = customerId;
-    if (paymentStatus) query.paymentStatus = paymentStatus;
+    if (paymentStatus) {
+      if (paymentStatus.includes(',')) {
+        query.paymentStatus = { $in: paymentStatus.split(',').map((s) => s.trim()) };
+      } else if (paymentStatus === 'unsettled') {
+        query.paymentStatus = { $in: ['Unpaid', 'Partially Paid'] };
+      } else {
+        query.paymentStatus = paymentStatus;
+      }
+    }
     if (status) query.status = status;
     if (startDate || endDate) {
       query.invoiceDate = {};

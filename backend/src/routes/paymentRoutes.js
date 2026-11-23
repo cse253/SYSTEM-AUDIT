@@ -10,9 +10,9 @@ const { protect, authorize } = require('../middleware/auth');
 router.use(protect);
 
 router.route('/')
-  .get(getPayments)
+  .get(authorize('admin', 'owner', 'accountant_auditor'), getPayments)
   .post(authorize('admin', 'owner'), recordPayment);
 
-router.get('/ageing', getReceivablesAgeing);
+router.get('/ageing', authorize('admin', 'owner', 'accountant_auditor'), getReceivablesAgeing);
 
 module.exports = router;

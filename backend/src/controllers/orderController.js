@@ -376,10 +376,97 @@ const dispatchOrder = async (req, res, next) => {
   }
 };
 
+// @desc    Update sales order (modify quantities, prices, remarks before approval)
+// @route   PUT /api/orders/:id
+// @access  Private (Admin, Owner)
+const updateOrder = async (req, res, next) => {
+  try {
+    const { items, remarks } = req.body;
+    const order = await SalesOrder.findById(req.params.id);
+    if (!order) {
+      return res.status(404).json({ success: false, message: 'Sales order not found' });
+    }
+
+    if (order.status !== 'Submitted') {
+      return res.status(400).json({
+        success: false,
+        message: `Cannot edit order in '${order.status}' status. Only 'Submitted' orders can be modified.`,
+      });
+    }
+
+    if (!items || !items.length) {
+      return res.status(400).json({ success: false, message: 'At least one item is required' });
+    }
+
+    const customer = await Customer.findById(order.customer);
+    if (!customer) {
+      return res.status(404).json({ success: false, message: 'Customer not found' });
+    }
+
+    // Enrich line items with product details and price validation
+    const enrichedItems = [];
+    for (const item of items) {
+      const product = await Product.findById(item.product);
+      if (!product) {
+        return res.status(404).json({ success: false, message: `Product ${item.product} not found` });
+      }
+
+      let unitPrice = Number(item.unitPrice);
+      if (unitPrice === undefined || isNaN(unitPrice)) {
+        unitPrice = product.sellingPrice;
+      }
+
+      enrichedItems.push({
+        product: product._id,
+        productName: product.name,
+        sku: product.sku,
+        hsnCode: product.hsnCode,
+        quantity: Number(item.quantity),
+        unit: product.unit || 'packets',
+        unitPrice,
+        gstPercentage: product.gstPercentage,
+      });
+    }
+
+    // Recalculate GST using existing tax calculation service
+    const taxCalculation = calculateGST(enrichedItems, customer.state, customer.stateCode);
+
+    order.items = taxCalculation.items;
+    order.subtotal = taxCalculation.taxableAmount;
+    order.totalTax = taxCalculation.totalTax;
+    order.grandTotal = taxCalculation.grandTotal;
+    order.isInterState = taxCalculation.isInterState;
+    if (remarks !== undefined) {
+      order.remarks = remarks;
+    }
+
+    await order.save();
+
+    await AuditLog.create({
+      action: 'SALES_ORDER_UPDATED',
+      entity: 'SalesOrder',
+      entityId: order._id,
+      performedBy: req.user._id,
+      userName: req.user.name,
+      details: { orderNumber: order.orderNumber, grandTotal: order.grandTotal, itemsCount: order.items.length },
+      ipAddress: req.ip,
+    });
+
+    res.json({
+      success: true,
+      message: 'Sales order updated successfully',
+      order,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createOrder,
   getOrders,
   getOrderById,
+  updateOrder,
   approveOrder,
   rejectOrder,
   dispatchOrder,

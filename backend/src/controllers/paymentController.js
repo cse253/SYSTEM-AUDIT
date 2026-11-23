@@ -36,10 +36,23 @@ const recordPayment = async (req, res, next) => {
       if (!invoice) {
         return res.status(404).json({ success: false, message: 'Invoice not found' });
       }
+      if (payAmount > invoice.balanceDue) {
+        return res.status(400).json({
+          success: false,
+          message: `Payment amount ₹${payAmount.toFixed(2)} exceeds invoice balance due of ₹${invoice.balanceDue.toFixed(2)}`,
+        });
+      }
     } else {
       // Find oldest unpaid invoice for this customer if none specified
       invoice = await Invoice.findOne({ customer: customer._id, paymentStatus: { $ne: 'Paid' }, status: 'Active' })
         .sort({ invoiceDate: 1 });
+
+      if (!invoice && customer.outstandingBalance > 0 && payAmount > customer.outstandingBalance) {
+        return res.status(400).json({
+          success: false,
+          message: `Payment amount ₹${payAmount.toFixed(2)} exceeds customer total outstanding balance of ₹${customer.outstandingBalance.toFixed(2)}`,
+        });
+      }
     }
 
     const paymentNumber = await generatePaymentNumber();

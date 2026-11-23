@@ -4,7 +4,7 @@
 > **Institution**: Centre for Digital Infrastructure, National Institute of Technology (NIT), Tiruchirappalli  
 > **Domain**: Full-Stack Enterprise ERP & Digital Infrastructure  
 > **Application**: Order-to-Audit ERP for South Indian Packaged Food Manufacturing (Murukku, Mixture, Chips, Sweets)  
-> **Verification**: 74 / 74 Test Assertions Passed (100% OK, Zero Regressions)
+> **Verification**: 84 / 84 Test Assertions & Benchmark Metrics Passed (100% OK, Zero Regressions)
 
 ---
 
@@ -229,7 +229,7 @@ npm test
 
 ## 8. Automated Testing & Verification Suite
 
-The repository contains an automated test runner (`npm test`) covering **74 total assertions** across all system layers:
+The repository contains an automated test runner (`npm test`) covering **84 total assertions & benchmark validations** across all system layers:
 
 ```
 ======================================================
@@ -241,10 +241,11 @@ The repository contains an automated test runner (`npm test`) covering **74 tota
 >> Executing: src/tests/phase4ProductionTest.js    -> [PASS] (12 / 12)
 >> Executing: src/tests/phase5CostingPaymentTest.js -> [PASS] (6 / 6)
 >> Executing: src/tests/phase6ReportsTest.js       -> [PASS] (15 / 15)
+>> Executing: src/tests/phase7HardeningTest.js     -> [PASS] (10 / 10)
 >> Executing: src/scripts/runBenchmarkScenario.js  -> [PASS] (12 / 12 exact matches)
 
 ======================================================
-   ALL 7 TEST SUITES & BENCHMARKS PASSED (100% OK)    
+   ALL 8 TEST SUITES & BENCHMARKS PASSED (100% OK)    
 ======================================================
 ```
 
@@ -271,5 +272,7 @@ Comprehensive engineering diagrams and specifications are available in the [`doc
 - [BUSINESS_WORKFLOW.svg](file:///E:/nit%20tiruchi%20task/docs/BUSINESS_WORKFLOW.svg) — Dual-loop business workflow diagram.
 - [DESIGN_NOTE.md](file:///E:/nit%20tiruchi%20task/docs/DESIGN_NOTE.md) — 2-page engineering design note for internship evaluation.
 - [DESIGN_NOTE.pdf](file:///E:/nit%20tiruchi%20task/docs/DESIGN_NOTE.pdf) — Printable two-page PDF design note.
+- [DEMO_VIDEO_SCRIPT.md](file:///E:/nit%20tiruchi%20task/docs/DEMO_VIDEO_SCRIPT.md) — Verbatim 8-minute demonstration script for technical evaluation.
+- [FINAL_PROJECT_VERIFICATION_REPORT.md](file:///E:/nit%20tiruchi%20task/FINAL_PROJECT_VERIFICATION_REPORT.md) — Comprehensive submission verification and audit sign-off report.
 - [FINAL_SYSTEM_AUDIT_REPORT.md](file:///E:/nit%20tiruchi%20task/FINAL_SYSTEM_AUDIT_REPORT.md) — Initial comprehensive system audit report.
 - [POST_FIX_VERIFICATION_REPORT.md](file:///E:/nit%20tiruchi%20task/POST_FIX_VERIFICATION_REPORT.md) — 5-issue post-fix verification report with 100% passing results.

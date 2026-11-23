@@ -42,7 +42,7 @@ const Payments = () => {
         api.get('/payments'),
         api.get('/payments/ageing'),
         api.get('/customers'),
-        api.get('/invoices', { params: { paymentStatus: 'Unpaid' } }),
+        api.get('/invoices', { params: { paymentStatus: 'Unpaid,Partially Paid' } }),
       ]);
 
       if (payRes.data.success) setPayments(payRes.data.payments);
@@ -107,7 +107,7 @@ const Payments = () => {
 
   const selectedCustomerObj = customers.find((c) => c._id === customerId);
   const customerInvoices = invoices.filter(
-    (i) => (i.customer?._id || i.customer) === customerId
+    (i) => (i.customer?._id || i.customer) === customerId && i.balanceDue > 0
   );
 
   return (
